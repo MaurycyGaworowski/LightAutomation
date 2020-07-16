@@ -372,13 +372,13 @@ checkbox.addEventListener( 'change', function() {
     if(this.checked) {
         // Checkbox is checked..
         console.log("ON ms");
-        document.querySelector('.smType').innerHTML = 'Tryb slave';
+        document.querySelector('.smType').innerHTML = 'Tryb master';
         document.querySelector('.addSlave').classList.remove('d-none');
         // document.querySelector('.harmonogram').classList.remove('d-none');
         } else {
         // Checkbox is not checked..
         console.log("OFF ms")
-        document.querySelector('.smType').innerHTML = 'Tryb master';
+        document.querySelector('.smType').innerHTML = 'Tryb slave';
         document.querySelector('.addSlave').classList.add('d-none');
         // document.querySelector('.harmonogram').classList.add('d-none');
     }
@@ -389,12 +389,12 @@ function boxChecksmType() {
     var checkbox = document.querySelector("input[name=smType]");
     if (checkbox.checked == true){
     console.log('tak ms');
-    document.querySelector('.smType').innerHTML = 'Tryb slave';
+    document.querySelector('.smType').innerHTML = 'Tryb master';
     document.querySelector('.addSlave').classList.remove('d-none');
     // document.querySelector('.harmonogram').classList.remove('d-none');
   } else {
     console.log('nie ms');
-    document.querySelector('.smType').innerHTML = 'Tryb master';
+    document.querySelector('.smType').innerHTML = 'Tryb slave';
     document.querySelector('.addSlave').classList.add('d-none');
     // document.querySelector('.harmonogram').classList.add('d-none');
   }
