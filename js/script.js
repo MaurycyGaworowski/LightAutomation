@@ -37,6 +37,8 @@ function newSSID() {
 
 function dropSSID() {
     document.querySelector('.newSSID').classList.add('d-none');
+    document.getElementById('SSID').value = '';
+    document.getElementById('PASS').value = '';
 }
 
 function optionTypeCheck(){
@@ -338,3 +340,62 @@ function boxCheckHarmSun() {
   }
 }
 // Niedziela
+
+$(document).ready(function(){
+    var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = '<div><div class="row margin-top-10"><div class="col-3 h-auto-text-center"><input class="form-control" type="text" name="field_name[]" value=""/></div><div class="col-1 h-auto-text-center"><a href="javascript:void(0);" class="remove_button margLeft" title="Usuń"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/><path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/></svg></a></div></div></div>'; //New input field html 
+    var x = 1; //Initial field counter is 1
+    
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){ 
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+    
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+});
+
+function smTypeCheck(){
+    var checkbox = document.querySelector("input[name=smType]");
+
+checkbox.addEventListener( 'change', function() {
+    if(this.checked) {
+        // Checkbox is checked..
+        console.log("ON ms");
+        document.querySelector('.smType').innerHTML = 'Tryb slave';
+        document.querySelector('.addSlave').classList.remove('d-none');
+        // document.querySelector('.harmonogram').classList.remove('d-none');
+        } else {
+        // Checkbox is not checked..
+        console.log("OFF ms")
+        document.querySelector('.smType').innerHTML = 'Tryb master';
+        document.querySelector('.addSlave').classList.add('d-none');
+        // document.querySelector('.harmonogram').classList.add('d-none');
+    }
+});
+}
+
+function boxChecksmType() {
+    var checkbox = document.querySelector("input[name=smType]");
+    if (checkbox.checked == true){
+    console.log('tak ms');
+    document.querySelector('.smType').innerHTML = 'Tryb slave';
+    document.querySelector('.addSlave').classList.remove('d-none');
+    // document.querySelector('.harmonogram').classList.remove('d-none');
+  } else {
+    console.log('nie ms');
+    document.querySelector('.smType').innerHTML = 'Tryb master';
+    document.querySelector('.addSlave').classList.add('d-none');
+    // document.querySelector('.harmonogram').classList.add('d-none');
+  }
+}
