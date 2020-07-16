@@ -1,0 +1,39 @@
+.lower {
+    margin-top: 30px;
+    padding: 15px;
+}
+
+.settings {
+    margin-top: 40px;
+}
+
+.margin-top {
+    margin-top: 30px;
+}
+
+.margin-top-10 {
+    margin-top: 10px;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.settings-admin {
+    margin-top: 40px;
+}
+
+.max-width-80 {
+    max-width: 80px;
+}
+.h-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: end;
+}
+
+.h-auto-text-center {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
