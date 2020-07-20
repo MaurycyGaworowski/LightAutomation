@@ -35,7 +35,8 @@
 .h-auto-text-center {
     margin-top: auto;
     margin-bottom: auto;
-    text-align: center;
+    /* text-align: center; */
+    margin-left: 15px;
 }
 
 .margLeft {

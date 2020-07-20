@@ -345,7 +345,13 @@ $(document).ready(function(){
     var maxField = 10; //Input fields increment limitation
     var addButton = $('.add_button'); //Add button selector
     var wrapper = $('.field_wrapper'); //Input field wrapper
-    var fieldHTML = '<div><div class="row margin-top-10"><div class="col-3 h-auto-text-center"><input class="form-control" type="text" name="field_name[]" value=""/></div><div class="col-1 h-auto-text-center"><a href="javascript:void(0);" class="remove_button margLeft" title="Usuń"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/><path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/></svg></a></div></div></div>'; //New input field html 
+    var fieldHTML = '<div class="row margin-top-10">\
+        <input class="form-control col-3 h-auto-text-center" type="text" name="field_name[]" value=""/>\
+        <a href="javascript:void(0);" class="remove_button col-1 h-auto-text-center" title="Usuń">\
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/><path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/></svg>\
+        </a>\
+    </div>'; //New input field html 
+
     var x = 1; //Initial field counter is 1
     
     //Once add button is clicked
