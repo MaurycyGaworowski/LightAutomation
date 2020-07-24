@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="pl">
     <head>
-        <title>Title</title>
+        <title>LightAutomation @ SELECO.pl</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1,
@@ -14,12 +14,12 @@
             crossorigin="anonymous">
     </head>
     <body>
-
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -28,70 +28,60 @@
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-        <!-- Additional -->
+            <!-- Additional -->
+        <link
+            href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
+            rel="stylesheet">
+        <script
+            src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         <script src="/js/script.js"></script>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="/css/style.css">
-        <!--  -->
+        <script src="/js/md5.js"></script>
+        
+        
         <!-- login -->
         <section class="login">
-            <div class="<div class="container">
-                <div class="row justify-content-center align-items-center"
-                    style="height:100vh">
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <form action="" autocomplete="off">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control"
-                                            name="username">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="password"
-                                            class="form-control"
-                                            name="password">
-                                    </div>
-                                    <button type="button" id="sendlogin"
-                                        class="btn btn-primary"
-                                        onclick="credCheck()">login</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container col-xl-2 col-lg-4 col-md-6 col-sm-8 login">
+                <div>
+                    <img class="mb-4 center" src="/img/logo.png" alt="" width="70" height="70">
+                    <h1 class="h6 mb-3 font-weight-normal centerText">Logowanie @ LightAutomation</h1>
+                    <input id="inputLogin" class="form-control login centerText" placeholder="login" required autofocus>
+                    <input id="inputPassword" class="form-control login centerText" placeholder="password" type="password" required>
+                    <button class="btn btn-md btn-primary btn-block login" type="submit" onclick="checkCred();">Zaloguj</button>
+                    <p class="mt-5 mb-3 text-muted centerText">&copy; 2020 - SELECO.pl</p>
                 </div>
+                <div id="messageBox" class="alert info centerText d-none" role="alert">Nieprawidłowe dane logowania!</div>
             </div>
         </section>
         <!-- !login -->
         <!-- user -->
         <section class="user">
             <div class="container shadow lower">
-                <p><h3>Sposób sterowania oświetleniam</h3></p>
-                <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input"
-                        id="optionType" name="checkbox">
-                    <label class="custom-control-label setup" for="optionType">Wczytuję
-                        ustawienia</label>
-                </div>
-                <!--  -->
-                <div class="settings">
-                    <p><h3>Harmonogram</h3></p>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input"
-                            id="optionTypeSun" name="checkboxSun" checked>
-                        <label class="custom-control-label setup"
-                            for="optionTypeSun">Działanie zgodnie ze
-                            wschodem i zachodem słońca</label>
-                    </div>
-                    <div class="harmonogram">
+                <h3>Tryb pracy</h3>
+                <input class="mg" id="typeOf" data-size="normal" type="checkbox"
+                    data-toggle="toggle" data-width="100%" data-onstyle="success
+                    typeOn" data-offstyle="danger typeOff" data-off="Sterowanie
+                    za pomocą czujnika ruch" data-on="Sterowanie za pomocą
+                    harmonogramu">
+                <div class="settings w3-animate-left">
+                    <h3>Harmonogram</h3>
+                    <input id="harmOn" data-size="normal" type="checkbox"
+                        data-toggle="toggle" data-width="100%"
+                        data-onstyle="warning harmOn" data-offstyle="info
+                        harmOff" data-off="Według wschodu / zachodu słońca"
+                        data-on="Harmonogram użytkownika">
+                    <div class="harmonogram w3-animate-left">
                         <div class="row r2 align-items-center margin-top">
-                            <div class="col col-6 d-inline p-2 bg-primary">Dni
+                            <div class="col col-6 d-inline p-2 bg-light">Dni
                                 tygodnia</div>
-                            <div class="col col-6 d-inline p-2 bg-primary">Tryb
+                            <div class="col col-6 d-inline p-2 bg-light">Tryb
                                 pracy</div>
                         </div>
                         <!-- Mon -->
                         <div class="row r2 align-items-center margin-top">
-                            <div class="col col-6">Poniedziałek</div>
-                            <div class="col col-6">
+                            <div class="col col-6 bg-light">Poniedziałek</div>
+                            <div class="col col-6 bg-light">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox"
                                         class="custom-control-input"
@@ -101,95 +91,39 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="timeMon d-none">
+                        <div class="timeMon d-none w3-animate-left">
                             <div class="row margin-top-10">
                                 <div class="col"></div>
                                 <div class="col h-auto-text-center">Godzina</div>
                                 <div class="col h-auto-text-center">Minuta</div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Początek</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromH-Mon">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromH-Mon"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromM-Mon">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromM-Mon"></select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Koniec</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toH-Mon">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toH-Mon"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toM-Mon">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toM-Mon"></select>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                         <!-- Tue -->
                         <div class="row r2 align-items-center margin-top">
-                            <div class="col col-6">Wtorek</div>
-                            <div class="col col-6">
+                            <div class="col col-6 bg-light">Wtorek</div>
+                            <div class="col col-6 bg-light">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox"
                                         class="custom-control-input"
@@ -198,96 +132,40 @@
                                         for="optionTypeHarmTue">tryb</label>
                                 </div>
                             </div>
-                        </div>    
-                        <div class="timeTue d-none">
+                        </div>
+                        <div class="timeTue d-none w3-animate-left">
                             <div class="row margin-top-10">
                                 <div class="col"></div>
                                 <div class="col h-auto-text-center">Godzina</div>
                                 <div class="col h-auto-text-center">Minuta</div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Początek</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromH-Tue">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromH-Tue"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromM-Tue">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromM-Tue"></select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Koniec</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toH-Tue">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toH-Tue"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toM-Tue">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toM-Tue"></select>
                                 </div>
-                            </div>  
-                        </div>  
+                            </div>
+                        </div>
                         <!--Wed-  -->
                         <div class="row r2 align-items-center margin-top">
-                            <div class="col col-6">Środa</div>
-                            <div class="col col-6">
+                            <div class="col col-6 bg-light">Środa</div>
+                            <div class="col col-6 bg-light">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox"
                                         class="custom-control-input"
@@ -296,96 +174,40 @@
                                         for="optionTypeHarmWed">tryb</label>
                                 </div>
                             </div>
-                        </div>    
-                        <div class="timeWed d-none">
+                        </div>
+                        <div class="timeWed d-none w3-animate-left">
                             <div class="row margin-top-10">
                                 <div class="col"></div>
                                 <div class="col h-auto-text-center">Godzina</div>
                                 <div class="col h-auto-text-center">Minuta</div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Początek</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromH-Wed">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromH-Wed"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromM-Wed">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromM-Wed"></select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Koniec</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toH-Wed">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toH-Wed"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toM-Wed">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toM-Wed"></select>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                         <!-- Thu -->
                         <div class="row r2 align-items-center margin-top">
-                            <div class="col col-6">Czwartek</div>
-                            <div class="col col-6">
+                            <div class="col col-6 bg-light">Czwartek</div>
+                            <div class="col col-6 bg-light">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox"
                                         class="custom-control-input"
@@ -394,96 +216,40 @@
                                         for="optionTypeHarmThu">tryb</label>
                                 </div>
                             </div>
-                        </div>    
+                        </div>
                         <div class="timeThu d-none">
-                            <div class="row margin-top-10">
+                            <div class="row margin-top-10 w3-animate-left">
                                 <div class="col"></div>
                                 <div class="col h-auto-text-center">Godzina</div>
                                 <div class="col h-auto-text-center">Minuta</div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Początek</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromH-Thu">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromH-Thu"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromM-Thu">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromM-Thu"></select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Koniec</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toH-Thu">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toH-Thu"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toM-Thu">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toM-Thu"></select>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                         <!-- Fri -->
                         <div class="row r2 align-items-center margin-top">
-                            <div class="col col-6">Piątek</div>
-                            <div class="col col-6">
+                            <div class="col col-6 bg-light">Piątek</div>
+                            <div class="col col-6 bg-light">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox"
                                         class="custom-control-input"
@@ -492,96 +258,40 @@
                                         for="optionTypeHarmFri">tryb</label>
                                 </div>
                             </div>
-                        </div>    
-                        <div class="timeFri d-none">
+                        </div>
+                        <div class="timeFri d-none w3-animate-left">
                             <div class="row margin-top-10">
                                 <div class="col"></div>
                                 <div class="col h-auto-text-center">Godzina</div>
                                 <div class="col h-auto-text-center">Minuta</div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Początek</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromH-Fri">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromH-Fri"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromM-Fri">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromM-Fri"></select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Koniec</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toH-Fri">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toH-Fri"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toM-Fri">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toM-Fri"></select>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                         <!-- Sat -->
                         <div class="row r2 align-items-center margin-top">
-                            <div class="col col-6">Sobota</div>
-                            <div class="col col-6">
+                            <div class="col col-6 bg-light">Sobota</div>
+                            <div class="col col-6 bg-light">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox"
                                         class="custom-control-input"
@@ -590,96 +300,40 @@
                                         for="optionTypeHarmSat">tryb</label>
                                 </div>
                             </div>
-                        </div>    
-                        <div class="timeSat d-none">
+                        </div>
+                        <div class="timeSat d-none w3-animate-left">
                             <div class="row margin-top-10">
                                 <div class="col"></div>
                                 <div class="col h-auto-text-center">Godzina</div>
                                 <div class="col h-auto-text-center">Minuta</div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Początek</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromH-Sat">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromH-Sat"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromM-Sat">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromM-Sat"></select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Koniec</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toH-Sat">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toH-Sat"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toM-Sat">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toM-Sat"></select>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                         <!-- Sun -->
                         <div class="row r2 align-items-center margin-top">
-                            <div class="col col-6">Niedziela</div>
-                            <div class="col col-6">
+                            <div class="col col-6 bg-light">Niedziela</div>
+                            <div class="col col-6 bg-light">
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox"
                                         class="custom-control-input"
@@ -688,249 +342,207 @@
                                         for="optionTypeHarmSun">tryb</label>
                                 </div>
                             </div>
-                        </div>    
-                        <div class="timeSun d-none">
+                        </div>
+                        <div class="timeSun d-none w3-animate-left">
                             <div class="row margin-top-10">
                                 <div class="col"></div>
                                 <div class="col h-auto-text-center">Godzina</div>
                                 <div class="col h-auto-text-center">Minuta</div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Początek</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromH-Sun">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromH-Sun"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="fromM-Sun">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="fromM-Sun"></select>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col h-auto-text-center">Koniec</div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toH-Sun">
-                                        <option value="00">00</option>
-                                        <option value="01">01</option>
-                                        <option value="02">02</option>
-                                        <option value="03">03</option>
-                                        <option value="04">04</option>
-                                        <option value="05">05</option>
-                                        <option value="06">06</option>
-                                        <option value="07">07</option>
-                                        <option value="08">08</option>
-                                        <option value="09">09</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toH-Sun"></select>
                                 </div>
                                 <div class="col h-auto-text-center">
-                                    <select class="custom-select my-1 mr-sm-2 max-width-80" id="toM-Sun">
-                                        <option value="00">00</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
-                                    </select>
+                                    <select class="custom-select my-1 mr-sm-2
+                                        max-width-80" id="toM-Sun"></select>
                                 </div>
-                            </div>  
+                            </div>
+                        </div>
+                        <div class="row margin-top justify-content-center">
+                            <div class="col-lg-4 col-md-6 col-sm-12"><button
+                                    type="button"
+                                    name="admin"
+                                    class="btn btn-info btn-md btn-block"
+                                    onclick="saveHarm()">Zapisz harmonogram</button></div>
                         </div>
                         <!--  -->
                     </div>
                 </div>
-                    <div class="row margin-top justify-content-center">
-                        <div class="col-4"><button type="button" name="admin"
-                                id="" class="btn btn-info btn-md btn-block"
-                                onclick="saveHarm()">Zapisz harmonogram</button></div>
-                    </div>
-                </div>
+                <!-- button -->
             </div>
         </section>
-    <!-- !user -->
-    <!-- admin -->
-    <section class="admin">
-        <div class="container shadow lower">
-            <div class="settings-admin">
-                <p><h3>Ustawienia</h3></p>
-                <div class="row r0 align-items-center margin-top">
-                    <div class="col-5">Ustawienia strefy czasowej:</div>
-                    <div class="col-7">
-                        <select class="custom-select my-1 mr-sm-2"
-                            id="timeZoneSelect">
-                            <option selected>Wybierz strefe czasową</option>
-                            <option value="-1">UTC-01:00</option>
-                            <option value="0">UTC+00:00</option>
-                            <option value="+1">UTC+01:00</option>
-                        </select>
+        <!-- !user -->
+        <!-- admin -->
+        <section class="admin">
+            <div class="container shadow lower">
+                <div class="settings-admin">
+                    <h3>Ustawienia</h3>
+                    <div class="row r0 align-items-center margin-top">
+                        <div class="col-5">Ustawienia strefy czasowej:</div>
+                        <div class="col-7">
+                            <select class="custom-select my-1 mr-sm-2" id="timeZoneSelect">
+                                <option selected>Wybierz strefe czasową</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="row r1 align-items-center margin-top">
-                    <div class="col-5">Położenie geograficzne:</div>
-                    <div class="col-7">
-                        <div class="form-row align-items-center">
-                            <div class="col">
-                                <label class="sr-only"
-                                    for="inlineFormInputGroupLo">długość
-                                    geograficzna</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Lon.:</div>
+                    <div class="row r1 align-items-center margin-top">
+                        <div class="col-4">Położenie geograficzne:</div>
+                        <div class="col-8">
+                            <div class="form-row align-items-center">
+                                <div class="col">
+                                    <label class="sr-only" for="inlineFormInputGroupLo">dł.</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inlineFormInputGroupLo" placeholder="dł.">
                                     </div>
-                                    <input type="text" class="form-control"
-                                        id="inlineFormInputGroupLo"
-                                        placeholder="długość geograficzna">
                                 </div>
-                            </div>
-                            <div class="col">
-                                <label class="sr-only"
-                                    for="inlineFormInputGroupLa">szerokość
-                                    geograficzna</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">Lat.:</div>
+                                <div class="col">
+                                    <label class="sr-only" for="inlineFormInputGroupLa">szer.</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inlineFormInputGroupLa" placeholder="szer.">
                                     </div>
-                                    <input type="text" class="form-control"
-                                        id="inlineFormInputGroupLa"
-                                        placeholder="szerokość geograficzna">
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row r2 align-items-center margin-top">
-                    <div class="col-5">Aktualne parametry sieci</div>
-                </div>
-                <div class="row r2 align-items-center margin-top">
-                    <div class="col d-inline p-2 bg-primary">LAN IP</div>
-                    <div class="col d-inline p-2 bg-primary">WAN IP</div>
-                    <div class="col d-inline p-2 bg-primary">WLAN SSID</div>    
-                </div>
-                <div class="row r2 align-items-center margin-top">    
-                    <div class="col">192.168.10.201</div>
-                    <div class="col">188.122.2.13</div>
-                    <div class="col">Office @ SELECO.pl</div>
-                </div>
-                <div class="row margin-top justify-content-center">
-                    <div class="col-4"><button type="button" name=""
-                            id="" class="btn btn-info btn-md btn-block"
-                            onclick="newSSID()">Nowe połączenie</button></div>
-                </div>
-                <div class="row margin-top justify-content-center d-none newSSID">
-                    <div class="col">
-                        <input class="form-control" type="text" placeholder="SSID" id="SSID"/>
+                    <div class="row r1 align-items-center margin-top justify-content-center">
+                        <button type="button" class="btn btn-secondary btn-md btn-block col-6" onclick="getLocation()">Pobierz geolokalizację</button>
                     </div>
-                    <div class="col">
-                        <input class="form-control" type="text" placeholder="PASSWORD" id="PASS"/>
+                    <h3 class="lower">Aktualne parmetry sieci</h3>
+                    <div class="row r2 align-items-center margin-top">
+                        <div class="col-4 d-inline p-2 bg-light text-wrap">LAN IP</div>
+                        <div class="col-4 d-inline p-2 bg-light text-wrap">WAN IP</div>
+                        <div class="col-4 d-inline p-2 bg-light text-wrap">WLAN</div>
                     </div>
-                    <div class="col">
-                        <button type="button" name="" id="" class="btn btn-success btn-md btn-block" onclick="">Zapisz</button>
-                        <button type="button" name="" id="" class="btn btn-danger btn-md btn-block" onclick="dropSSID()">Anuluj</button>
+                    <div class="row r2 align-items-center">
+                        <div class="col-4 text-wrap">192.168.10.201</div>
+                        <div id="wanIP" class="col-4 text-wrap"></div>
+                        <div class="col-4 text-wrap">Office @ SELECO.pl</div>
                     </div>
-                </div>
-                <div class="row r2 align-items-center margin-top">
-                    <div class="col-5"><p><h3>Ustawienia master / slave</h3></p></div>
-                </div>
-                <div class="row r2 align-items-center">
-                    <div class="col-5">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input"
-                            id="smType" name="smType">
-                        <label class="custom-control-label smType" for="smType">Wczytuję
-                            ustawienia</label>
+                    <div class="row margin-top justify-content-center">
+                        <div class="col-6"><button type="button" class="btn btn-info btn-md btn-block" data-toggle="modal" data-target="#wirelessModal">Nowe połączenie</button></div>
                     </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="wirelessModal" tabindex="-1" role="dialog" aria-labelledby="wirelessModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="wirelessModalLabel">Konfiguracja sieci</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="dropSSID();">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row margin-top justify-content-center newSSID">
+                                        <div class="col">
+                                            <input class="form-control" type="text" placeholder="SSID" id="SSID"/>
+                                        </div>
+                                        <div class="col">
+                                            <input class="form-control" type="text" placeholder="PASSWORD" id="PASS"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="dropSSID()">Zamknij / anuluj</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveSSID()">Zapisz zmiany</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="addSlave d-none margin-top-10">    
-                    <div class="field_wrapper">
-                        <div class="row margin-top-10">
-                            <!-- <div class="col-3 h-auto-text-center"> -->
-                                <input class="form-control col-3 h-auto-text-center" type="text" name="field_name[]" value=""/>
-                            <!-- </div> -->
-                            <!-- <div class="col-1 h-auto-text-center">     -->
-                                <a href="javascript:void(0);" class="add_button col-1 h-auto-text-center" title="Dodaj urządzenie podrzędne">
+                    <h3 class="lower">Ustawienia master / slave</h3>
+                    <div class="row r2 align-items-center">
+                        <div class="col-5">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="smType" name="smType"/>
+                                <label class="custom-control-label smType" for="smType">Wczytuję ustawienia</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="addSlave d-none margin-top-10 w3-animate-left">
+                        <div class="field_wrapper">
+                            <div class="row margin-top-10">
+                                <input class="form-control col col-md-4 col-lg-3 h-auto-text-center" type="text" name="field_name[]" value=""/>
+                                <a href="javascript:void(0);" class="add_button col col-md-4 col-lg-3 h-auto-text-center" title="Dodaj urządzenie podrzędne">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
-                                        <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+                                            <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
                                     </svg>
                                 </a>
-                            <!-- </div> -->
-                        </div>    
+                            </div>
+                        </div>
                     </div>
-                </div> 
-            </div>
+                    <div class="row r1 align-items-center margin-top justify-content-center">
+                        <button type="button" class="btn btn-success btn-md btn-block col-6" onclick="alert('zapisuje config');">Zapisz ustawienia </button>
+                    </div>
+                </div>
+            </div>    
+        <!-- </div> -->
         </section>
         <!-- !admin -->
         <!-- logout -->
         <section class="logout">
-            <div class="container shadow lower">
-                <button type="button" name="logout" id="" class="btn btn-danger btn-md btn-block" onclick="logout()">Wyloguj</button>
-                <button type="button" name="admin" id="" class="btn btn-warning btn-md btn-block" onclick="adminZone()">Admin Zone</button>
-                <button type="button" name="admin" id="" class="btn btn-info btn-md btn-block" onclick="saveWork()">Wprowadź parametry do urządzenia</button>
-            </div>
+            <h6 class="d-none">Logout</h6>
+                <div class="container shadow lower">
+                    <button type="button" name="logout" class="btn btn-danger btn-md btn-block" onclick="logout();">Wyloguj</button>
+                    <button type="button" name="admin" class="btn btn-info btn-md btn-block" onclick="saveWork();">Wprowadź parametry do urządzenia</button>
+                </div>
         </section>
         <!-- !logout -->
         <!--  -->
         <script>
             startPage();
-            optionTypeCheck();
-            boxCheck();
-            optionTypeCheckSun();
-            boxCheckSun();
-            optionTypeCheckHarmMon();
-            boxCheckHarmMon();
-            optionTypeCheckHarmTue();
-            boxCheckHarmTue();
-            optionTypeCheckHarmWed();
-            boxCheckHarmWed();
-            optionTypeCheckHarmThu();
-            boxCheckHarmThu();
-            optionTypeCheckHarmFri();
-            boxCheckHarmFri();
-            optionTypeCheckHarmSat();
-            boxCheckHarmSat();
-            optionTypeCheckHarmSun();
-            boxCheckHarmSun();
             smTypeCheck();
             boxChecksmType();
+            readOptionTime('#fromH-Mon', '#fromM-Mon');
+            readOptionTime('#toH-Mon', '#toM-Mon');
+            readOptionTime('#fromH-Tue', '#fromM-Tue');
+            readOptionTime('#toH-Tue', '#toM-Tue');
+            readOptionTime('#fromH-Wed', '#fromM-Wed');
+            readOptionTime('#toH-Wed', '#toM-Wed');
+            readOptionTime('#fromH-Thu', '#fromM-Thu');
+            readOptionTime('#toH-Thu', '#toM-Thu');
+            readOptionTime('#fromH-Fri', '#fromM-Fri');
+            readOptionTime('#toH-Fri', '#toM-Fri');
+            readOptionTime('#fromH-Sat', '#fromM-Sat');
+            readOptionTime('#toH-Sat', '#toM-Sat');
+            readOptionTime('#fromH-Sun', '#fromM-Sun');
+            readOptionTime('#toH-Sun', '#toM-Sun');
+            readOptionTimeZone('#timeZoneSelect');
+            boxCheckHarmDay('.stateMon', '.timeMon', 'harmMon');
+            boxCheckHarmDay('.stateTue', '.timeTue', 'harmTue');
+            boxCheckHarmDay('.stateWed', '.timeWed', 'harmWed');
+            boxCheckHarmDay('.stateThu', '.timeThu', 'harmThu');
+            boxCheckHarmDay('.stateFri', '.timeFri', 'harmFri');
+            boxCheckHarmDay('.stateSat', '.timeSat', 'harmSat');
+            boxCheckHarmDay('.stateSun', '.timeSun', 'harmSun');
+            optionTypeCheckHarmDay('.stateMon', '.timeMon', 'harmMon');
+            optionTypeCheckHarmDay('.stateTue', '.timeTue', 'harmTue');
+            optionTypeCheckHarmDay('.stateWed', '.timeWed', 'harmWed');
+            optionTypeCheckHarmDay('.stateThu', '.timeThu', 'harmThu');
+            optionTypeCheckHarmDay('.stateFri', '.timeFri', 'harmFri');
+            optionTypeCheckHarmDay('.stateSat', '.timeSat', 'harmSat');
+            optionTypeCheckHarmDay('.stateSun', '.timeSun', 'harmSun');
+            typeCheck('.typeOff', '#typeOf', '.settings');
+            typeCheck('.harmOn', '#harmOn', '.harmonogram');
+            wanIP();
+            // fMode('.mg', '.settings');
+        </script>
+        <script>
+            // feel 3 to script :)
+        
         </script>
     </body>
 </html>

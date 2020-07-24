@@ -1,3 +1,11 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70px;
+    height: 70px;
+  }
+  
 .lower {
     margin-top: 30px;
     padding: 15px;
@@ -42,3 +50,37 @@
 .margLeft {
     margin-left: 4px;
 }
+.login {
+    margin: auto;
+    margin-top: 25px;
+}
+
+@media screen and (max-width: 1366px){
+    .text-wrap {
+      font-size : 22px;
+    }
+ }
+
+@media screen and (max-width: 980px){
+    .text-wrap {
+      font-size : 18px;
+    }
+ }
+
+@media screen and (max-width: 420px){
+    .text-wrap {
+      font-size : 14px;
+    }
+ }
+ 
+ @media screen and (max-width: 320px){
+    .text-wrap {
+      font-size : 10px;
+    }
+ }
+
+ .toggle-on.btn:hover, .toggle-off.btn:hover {
+    background-color: gray !important;
+ }
+
+ 

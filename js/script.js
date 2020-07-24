@@ -1,407 +1,255 @@
-function startPage(){
-   document.querySelector('.user').classList.add('d-none');
-   document.querySelector('.admin').classList.add('d-none');
-   document.querySelector('.logout').classList.add('d-none');
-};
-
-function credCheck(){
-    document.querySelector('.login').classList.add('d-none');
-    document.querySelector('.user').classList.remove('d-none');
-    document.querySelector('.logout').classList.remove('d-none');
-   
-};
-
-function adminZone() {
-    document.querySelector('.admin').classList.remove('d-none');
-
+function startPage() {
+  document.querySelector(".user").classList.add("d-none");
+  document.querySelector(".admin").classList.add("d-none");
+  document.querySelector(".logout").classList.add("d-none");
 }
 
 function logout() {
-    document.querySelector('.user').classList.add('d-none');
-    document.querySelector('.admin').classList.add('d-none');
-    document.querySelector('.logout').classList.add('d-none');
-    document.querySelector('.login').classList.remove('d-none');
-}
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+  var HH = today.getHours();
+  var MM = today.getMinutes();
+
+  today = dd + "." + mm + "." + yyyy + " o godzinie " + HH + ":" + MM;
+
+  document.querySelector(".user").classList.add("d-none");
+  document.querySelector(".admin").classList.add("d-none");
+  document.querySelector(".logout").classList.add("d-none");
+  document.querySelector(".login").classList.remove("d-none");
+  document.querySelector(".info").classList.remove("d-none", "alert-danger");
+  document.querySelector(".info").classList.add("alert-success");
+  document.querySelector(".info").innerHTML = "Wylogowano z aplikacji</br>" + today;
+};
 
 function saveHarm() {
-    alert('Zapisano ustawienia qrła');
-}
+  alert("Zapisano ustawienia harmonogramu");
+};
 
 function saveWork() {
-    alert('Zastosowano wybrane opcje qrła');
-}
-
-function newSSID() {
-    document.querySelector('.newSSID').classList.remove('d-none');
-}
+  alert("Zapis ustawień");
+};
 
 function dropSSID() {
-    document.querySelector('.newSSID').classList.add('d-none');
-    document.getElementById('SSID').value = '';
-    document.getElementById('PASS').value = '';
-}
+  document.getElementById("SSID").value = "";
+  document.getElementById("PASS").value = "";
+};
 
-function optionTypeCheck(){
-    var checkbox = document.querySelector("input[name=checkbox]");
+function saveSSID() {
+  alert("Zapisano SSID, nastąpi restart urządzenia");
+};
 
-checkbox.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON");
-        document.querySelector('.setup').innerHTML = 'Sterowanie zgodnie z harmonogramem';
-        document.querySelector('.settings').classList.remove('d-none');
-        // document.querySelector('.harmonogram').classList.remove('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF")
-        document.querySelector('.setup').innerHTML = 'Sterowanie za pomocą czujnika ruchu';
-        document.querySelector('.settings').classList.add('d-none');
-        // document.querySelector('.harmonogram').classList.add('d-none');
-    }
-});
-}
-
-function boxCheck() {
-    var checkbox = document.querySelector("input[name=checkbox]");
-    if (checkbox.checked == true){
-    console.log('tak');
-    document.querySelector('.setup').innerHTML = 'Sterowanie zgodnie z harmonogramem';
-    document.querySelector('.settings').classList.remove('d-none');
-    document.querySelector('.harmonogram').classList.remove('d-none');
-  } else {
-    console.log('nie');
-    document.querySelector('.setup').innerHTML = 'Sterowanie za pomocą czujnika ruchu';
-    document.querySelector('.settings').classList.add('d-none');
-    document.querySelector('.harmonogram').classList.add('d-none');
-  }
-}
-
-function optionTypeCheckSun(){
-    var checkboxsun = document.querySelector("input[name=checkboxSun]");
-
-checkboxsun.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON sun");
-        // document.querySelector('.setup').innerHTML = 'Sterowanie zgodnie z harmonogramem';
-        document.querySelector('.harmonogram').classList.add('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF sun")
-        // document.querySelector('.setup').innerHTML = 'Sterowanie za pomocą czujnika ruchu';
-        document.querySelector('.harmonogram').classList.remove('d-none');
-    }
-});
-}
-
-function boxCheckSun() {
-    var checkboxsun = document.querySelector("input[name=checkboxSun]");
-    if (checkboxsun.checked == true){
-    console.log('tak');
-    // document.querySelector('.setup').innerHTML = 'Sterowanie zgodnie z harmonogramem';
-    document.querySelector('.harmonogram').classList.add('d-none');
-    } else {
-    console.log('nie');
-    // document.querySelector('.setup').innerHTML = 'Sterowanie za pomocą czujnika ruchu';
-    document.querySelector('.harmonogram').classList.remove('d-none');
-  }
-}
-
-
-// Poniedziałek
-
-function optionTypeCheckHarmMon(){
-    var checkboxHarmMon = document.querySelector("input[name=harmMon]");
-
-checkboxHarmMon.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON");
-        document.querySelector('.stateMon').innerHTML = 'Zakres godzin';
-        document.querySelector('.timeMon').classList.remove('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF")
-        document.querySelector('.stateMon').innerHTML = 'Automatycznie';
-        document.querySelector('.timeMon').classList.add('d-none');
-    }
-});
-}
-
-function boxCheckHarmMon() {
-    var checkboxHarmMon = document.querySelector("input[name=harmMon]");
-    if (checkboxHarmMon.checked == true){
-    console.log('tak');
-    document.querySelector('.stateMon').innerHTML = 'Zakres godzin';
-    document.querySelector('.timeMon').classList.remove('d-none');
-  } else {
-    console.log('nie');
-    document.querySelector('.stateMon').innerHTML = 'Automatycznie';
-    document.querySelector('.timeMon').classList.add('d-none');
-  }
-}
-
-// Poniedziałek
-// Wtorek
-
-function optionTypeCheckHarmTue(){
-    var checkboxHarmTue = document.querySelector("input[name=harmTue]");
-
-checkboxHarmTue.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON");
-        document.querySelector('.stateTue').innerHTML = 'Zakres godzin';
-        document.querySelector('.timeTue').classList.remove('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF")
-        document.querySelector('.stateTue').innerHTML = 'Automatycznie';
-        document.querySelector('.timeTue').classList.add('d-none');
-    }
-});
-}
-
-function boxCheckHarmTue() {
-    var checkboxHarmTue = document.querySelector("input[name=harmTue]");
-    if (checkboxHarmTue.checked == true){
-    console.log('tak');
-    document.querySelector('.stateTue').innerHTML = 'Zakres godzin';
-    document.querySelector('.timeTue').classList.remove('d-none');
-  } else {
-    console.log('nie');
-    document.querySelector('.stateTue').innerHTML = 'Automatycznie';
-    document.querySelector('.timeTue').classList.add('d-none');
-  }
-}
-
-// Wtorek
-// środa
-
-function optionTypeCheckHarmWed(){
-    var checkboxHarmWed = document.querySelector("input[name=harmWed]");
-
-checkboxHarmWed.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON");
-        document.querySelector('.stateWed').innerHTML = 'Zakres godzin';
-        document.querySelector('.timeWed').classList.remove('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF")
-        document.querySelector('.stateWed').innerHTML = 'Automatycznie';
-        document.querySelector('.timeWed').classList.add('d-none');
-    }
-});
-}
-
-function boxCheckHarmWed() {
-    var checkboxHarmWed = document.querySelector("input[name=harmWed]");
-    if (checkboxHarmWed.checked == true){
-    console.log('tak');
-    document.querySelector('.stateWed').innerHTML = 'Zakres godzin';
-    document.querySelector('.timeWed').classList.remove('d-none');
-  } else {
-    console.log('nie');
-    document.querySelector('.stateWed').innerHTML = 'Automatycznie';
-    document.querySelector('.timeWed').classList.add('d-none');
-  }
-}
-
-// środa
-// Czwartek
-
-function optionTypeCheckHarmThu(){
-    var checkboxHarmThu = document.querySelector("input[name=harmThu]");
-
-checkboxHarmThu.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON");
-        document.querySelector('.stateThu').innerHTML = 'Zakres godzin';
-        document.querySelector('.timeThu').classList.remove('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF")
-        document.querySelector('.stateThu').innerHTML = 'Automatycznie';
-        document.querySelector('.timeThu').classList.add('d-none');
-    }
-});
-}
-
-function boxCheckHarmThu() {
-    var checkboxHarmThu = document.querySelector("input[name=harmThu]");
-    if (checkboxHarmThu.checked == true){
-    console.log('tak');
-    document.querySelector('.stateThu').innerHTML = 'Zakres godzin';
-    document.querySelector('.timeThu').classList.remove('d-none');
-  } else {
-    console.log('nie');
-    document.querySelector('.stateThu').innerHTML = 'Automatycznie';
-    document.querySelector('.timeThu').classList.add('d-none');
-  }
-}
-
-// Czwartek
-// Piątek
-function optionTypeCheckHarmFri(){
-    var checkboxHarmFri = document.querySelector("input[name=harmFri]");
-
-checkboxHarmFri.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON");
-        document.querySelector('.stateFri').innerHTML = 'Zakres godzin';
-        document.querySelector('.timeFri').classList.remove('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF")
-        document.querySelector('.stateFri').innerHTML = 'Automatycznie';
-        document.querySelector('.timeFri').classList.add('d-none');
-    }
-});
-}
-
-function boxCheckHarmFri() {
-    var checkboxHarmFri = document.querySelector("input[name=harmFri]");
-    if (checkboxHarmFri.checked == true){
-    console.log('tak');
-    document.querySelector('.stateFri').innerHTML = 'Zakres godzin';
-    document.querySelector('.timeFri').classList.remove('d-none');
-  } else {
-    console.log('nie');
-    document.querySelector('.stateFri').innerHTML = 'Automatycznie';
-    document.querySelector('.timeFri').classList.add('d-none');
-  }
-}
-// Piątek
-// Sobota
-function optionTypeCheckHarmSat(){
-    var checkboxHarmSat = document.querySelector("input[name=harmSat]");
-
-checkboxHarmSat.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON");
-        document.querySelector('.stateSat').innerHTML = 'Zakres godzin';
-        document.querySelector('.timeSat').classList.remove('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF")
-        document.querySelector('.stateSat').innerHTML = 'Automatycznie';
-        document.querySelector('.timeSat').classList.add('d-none');
-    }
-});
-}
-
-function boxCheckHarmSat() {
-    var checkboxHarmSat = document.querySelector("input[name=harmSat]");
-    if (checkboxHarmSat.checked == true){
-    console.log('tak');
-    document.querySelector('.stateSat').innerHTML = 'Zakres godzin';
-    document.querySelector('.timeSat').classList.remove('d-none');
-  } else {
-    console.log('nie');
-    document.querySelector('.stateSat').innerHTML = 'Automatycznie';
-    document.querySelector('.timeSat').classList.add('d-none');
-  }
-}
-// Sobota
-// Niedziela
-function optionTypeCheckHarmSun(){
-    var checkboxHarmSun = document.querySelector("input[name=harmSun]");
-
-checkboxHarmSun.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON");
-        document.querySelector('.stateSun').innerHTML = 'Zakres godzin';
-        document.querySelector('.timeSun').classList.remove('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF")
-        document.querySelector('.stateSun').innerHTML = 'Automatycznie';
-        document.querySelector('.timeSun').classList.add('d-none');
-    }
-});
-}
-
-function boxCheckHarmSun() {
-    var checkboxHarmSun = document.querySelector("input[name=harmSun]");
-    if (checkboxHarmSun.checked == true){
-    console.log('tak');
-    document.querySelector('.stateSun').innerHTML = 'Zakres godzin';
-    document.querySelector('.timeSun').classList.remove('d-none');
-  } else {
-    console.log('nie');
-    document.querySelector('.stateSun').innerHTML = 'Automatycznie';
-    document.querySelector('.timeSun').classList.add('d-none');
-  }
-}
-// Niedziela
-
-$(document).ready(function(){
-    var maxField = 10; //Input fields increment limitation
-    var addButton = $('.add_button'); //Add button selector
-    var wrapper = $('.field_wrapper'); //Input field wrapper
-    var fieldHTML = '<div class="row margin-top-10">\
-        <input class="form-control col-3 h-auto-text-center" type="text" name="field_name[]" value=""/>\
-        <a href="javascript:void(0);" class="remove_button col-1 h-auto-text-center" title="Usuń">\
+$(document).ready(function () {
+  var maxField = 10; //Input fields increment limitation
+  var addButton = $(".add_button"); //Add button selector
+  var wrapper = $(".field_wrapper"); //Input field wrapper
+  var fieldHTML =
+    '<div class="row margin-top-10 w3-animate-left">\
+        <input class="form-control col col-md-4 col-lg-3 h-auto-text-center" type="text" name="field_name[]" value=""/>\
+        <a href="javascript:void(0);" class="remove_button col col-md-4 col-lg-3 h-auto-text-center" title="Usuń">\
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/><path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/></svg>\
         </a>\
-    </div>'; //New input field html 
+    </div>'; //New input field html
 
-    var x = 1; //Initial field counter is 1
-    
-    //Once add button is clicked
-    $(addButton).click(function(){
-        //Check maximum number of input fields
-        if(x < maxField){ 
-            x++; //Increment field counter
-            $(wrapper).append(fieldHTML); //Add field html
-        }
-    });
-    
-    //Once remove button is clicked
-    $(wrapper).on('click', '.remove_button', function(e){
-        e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
-        x--; //Decrement field counter
-    });
-});
+  var x = 1; //Initial field counter is 1
 
-function smTypeCheck(){
-    var checkbox = document.querySelector("input[name=smType]");
-
-checkbox.addEventListener( 'change', function() {
-    if(this.checked) {
-        // Checkbox is checked..
-        console.log("ON ms");
-        document.querySelector('.smType').innerHTML = 'Tryb master';
-        document.querySelector('.addSlave').classList.remove('d-none');
-        // document.querySelector('.harmonogram').classList.remove('d-none');
-        } else {
-        // Checkbox is not checked..
-        console.log("OFF ms")
-        document.querySelector('.smType').innerHTML = 'Tryb slave';
-        document.querySelector('.addSlave').classList.add('d-none');
-        // document.querySelector('.harmonogram').classList.add('d-none');
+  //Once add button is clicked
+  $(addButton).click(function () {
+    //Check maximum number of input fields
+    if (x < maxField) {
+      x++; //Increment field counter
+      $(wrapper).append(fieldHTML); //Add field html
     }
+  });
+
+  //Once remove button is clicked
+  $(wrapper).on("click", ".remove_button", function (e) {
+    e.preventDefault();
+    $(this).parent("div").remove(); //Remove field html
+    x--; //Decrement field counter
+  });
 });
-}
+
+function smTypeCheck() {
+  var checkbox = document.querySelector("input[name=smType]");
+
+  checkbox.addEventListener("change", function () {
+    if (this.checked) {
+      document.querySelector(".smType").innerHTML = "Tryb master";
+      document.querySelector(".addSlave").classList.remove("d-none");
+    } else {
+      document.querySelector(".smType").innerHTML = "Tryb slave";
+      document.querySelector(".addSlave").classList.add("d-none");
+    }
+  });
+};
 
 function boxChecksmType() {
-    var checkbox = document.querySelector("input[name=smType]");
-    if (checkbox.checked == true){
-    console.log('tak ms');
-    document.querySelector('.smType').innerHTML = 'Tryb master';
-    document.querySelector('.addSlave').classList.remove('d-none');
-    // document.querySelector('.harmonogram').classList.remove('d-none');
+  var checkbox = document.querySelector("input[name=smType]");
+  if (checkbox.checked == true) {
+    document.querySelector(".smType").innerHTML = "Tryb master";
+    document.querySelector(".addSlave").classList.remove("d-none");
   } else {
-    console.log('nie ms');
-    document.querySelector('.smType').innerHTML = 'Tryb slave';
-    document.querySelector('.addSlave').classList.add('d-none');
-    // document.querySelector('.harmonogram').classList.add('d-none');
+    document.querySelector(".smType").innerHTML = "Tryb slave";
+    document.querySelector(".addSlave").classList.add("d-none");
   }
-}
+};
+
+function optionTypeCheckHarmDay(stateDay, timeDay, harmDay) {
+  var checkboxHarmDay = document.querySelector("input[name=" + harmDay + "]");
+
+  checkboxHarmDay.addEventListener("change", function () {
+    if (this.checked) {
+      document.querySelector(stateDay).innerHTML = "Zakres godzin";
+      document.querySelector(timeDay).classList.remove("d-none");
+    } else {
+      document.querySelector(stateDay).innerHTML = "Automatycznie";
+      document.querySelector(timeDay).classList.add("d-none");
+    }
+  });
+};
+
+function boxCheckHarmDay(stateDay, timeDay, harmDay) {
+  var checkboxHarmDay = document.querySelector("input[name=" + harmDay + "]");
+  if (checkboxHarmDay.checked == true) {
+    document.querySelector(stateDay).innerHTML = "Zakres godzin";
+    document.querySelector(timeDay).classList.remove("d-none");
+  } else {
+    document.querySelector(stateDay).innerHTML = "Automatycznie";
+    document.querySelector(timeDay).classList.add("d-none");
+  }
+};
+
+// Var table for time and time zones
+var hours = [
+  "00",
+  "01",
+  "02",
+  "03",
+  "04",
+  "05",
+  "06",
+  "07",
+  "08",
+  "09",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "20",
+  "21",
+  "22",
+  "23",
+];
+var minuts = ["00", "15", "30", "45"];
+var timeZone = [
+  "UTC-04:00",
+  "UTC-03:00",
+  "UTC-02:00",
+  "UTC-01:00",
+  "UTC+00:00",
+  "UTC+01:00",
+  "UTC+02:00",
+  "UTC+03:00",
+  "UTC+04:00",
+];
+
+// Main function time select
+function readOptionTime(idH, idM) {
+  $.each(hours, function (i, p) {
+    $(idH).append($("<option></option>").val(p).html(p));
+  });
+  $.each(minuts, function (i, p) {
+    $(idM).append($("<option></option>").val(p).html(p));
+  });
+};
+
+// Main function time zone select
+function readOptionTimeZone(id) {
+  $.each(timeZone, function (i, p) {
+    var val = p.slice(3, 6);
+    r = val * 3600;
+    $(id).append($("<option></option>").val(r).html(p));
+  });
+};
+
+function typeCheck(classP, inputId, showDiv) {
+  if ($(classP)[0]) {
+    document.querySelector(showDiv).classList.remove("d-none");
+  } else {
+    document.querySelector(showDiv).classList.add("d-none");
+  }
+
+  $(function () {
+    $(inputId).change(function () {
+      if ($(this).prop("checked")) {
+        document.querySelector(showDiv).classList.remove("d-none");
+      } else {
+        //   document.querySelector(showDiv).classList.fa
+        document.querySelector(showDiv).classList.add("d-none");
+      }
+    });
+  });
+};
+
+function checkCred() {
+  var loginVal = document.querySelector("#inputLogin").value;
+  var passwordVal = document.querySelector("#inputPassword").value;
+  var passwordHash = CryptoJS.MD5(passwordVal);
+//   console.log(passwordHash);
+  if (loginVal == "mauro" && passwordVal == 123456) {
+    document.querySelector(".login").classList.add("d-none");
+    document.querySelector(".user").classList.remove("d-none");
+    document.querySelector(".logout").classList.remove("d-none");
+    document.querySelector(".info").classList.add("d-none");
+  } else {
+    if (loginVal == "serwis" && passwordVal == 12345678) {
+        document.querySelector(".login").classList.add("d-none");
+        document.querySelector(".user").classList.remove("d-none");
+        document.querySelector(".admin").classList.remove("d-none");
+        document.querySelector(".logout").classList.remove("d-none");
+        document.querySelector(".info").classList.add("d-none");
+    } 
+    else {
+      document.querySelector(".info").classList.remove("d-none");
+      document.querySelector(".info").classList.add("alert-danger");
+      document.querySelector('.info').innerHTML = ('Niepoprawne dane logowania');
+    }
+    document.querySelector(".info").classList.remove("d-none");
+    document.querySelector(".info").classList.add("alert-danger");
+    document.querySelector('.info').innerHTML = ('Niepoprawne dane logowania');
+  }
+};
+
+function wanIP() {
+  fetch("https://api.ipify.org?format=json")
+    .then(results => results.json());
+    // .then(dane => console.log(dane.ip));
+};
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    document.querySelector("#demo").innerHTML =
+      "Geolocation is not supported by this browser.";
+  }
+};
+
+function showPosition(position) {
+  document.getElementById("inlineFormInputGroupLo").value = position.coords.longitude;
+  document.getElementById("inlineFormInputGroupLa").value = position.coords.latitude;
+};
+
+function fMode(selector, object){
+    $(selector).click(function(){
+        $(object).fadeIn();
+    });
+};
