@@ -1,0 +1,59 @@
+{
+    "weekDayAutomation": [{
+            "id": 0,
+            "isActive": true,
+            "startTimeHours": 8,
+            "startTimeMinutes": 0,
+            "stopTimeHours": 16,
+            "stopTimeMinutes": 0
+        },
+        {
+            "id": 1,
+            "isActive": true,
+            "startTimeHours": 8,
+            "startTimeMinutes": 0,
+            "stopTimeHours": 16,
+            "stopTimeMinutes": 0
+        },
+        {
+            "id": 2,
+            "isActive": true,
+            "startTimeHours": 8,
+            "startTimeMinutes": 0,
+            "stopTimeHours": 16,
+            "stopTimeMinutes": 0
+        },
+        {
+            "id": 3,
+            "isActive": true,
+            "startTimeHours": 8,
+            "startTimeMinutes": 0,
+            "stopTimeHours": 16,
+            "stopTimeMinutes": 0
+        },
+        {
+            "id": 4,
+            "isActive": true,
+            "startTimeHours": 8,
+            "startTimeMinutes": 0,
+            "stopTimeHours": 16,
+            "stopTimeMinutes": 0
+        },
+        {
+            "id": 5,
+            "isActive": true,
+            "startTimeHours": 8,
+            "startTimeMinutes": 0,
+            "stopTimeHours": 16,
+            "stopTimeMinutes": 0
+        },
+        {
+            "id": 6,
+            "isActive": true,
+            "startTimeHours": 8,
+            "startTimeMinutes": 0,
+            "stopTimeHours": 16,
+            "stopTimeMinutes": 0
+        }
+    ]
+}

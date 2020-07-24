@@ -1,0 +1,17 @@
+{
+    "pinConfig": [{
+            "pinNumber": 14,
+            "pinMode": "read",
+            "pinState": "LOW",
+            "rellayNormallyClosed": true,
+            "isBistableButton": false
+        },
+        {
+            "pinNumber": 16,
+            "pinMode": "read",
+            "pinState": "LOW",
+            "rellayNormallyClosed": true,
+            "isBistableButton": false
+        }
+    ]
+}

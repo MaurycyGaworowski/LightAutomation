@@ -1,0 +1,121 @@
+{
+    "config": {
+        "apActiveTime": 3600,
+        "otaActiveTime": 3600,
+        "isOtaEnabled": true,
+        "isLightAutomationEnabled": false,
+        "dusk2DawnOff": true,
+        "autoDusk2DawnEnabled": false,
+        "isAutoResetEnabled": true,
+        "rellayNormallyClosed": true,
+        "dusk2DawnHoursStartDelay": 1,
+        "dusk2DawnHoursStopDelay": 2,
+        "dusk2DawnMinutesStartDelay": 10,
+        "dusk2DawnMinutesStopDelay": 15,
+        "weekDayAutomation": [{
+                "id": 0,
+                "isActive": true,
+                "startTimeHours": 8,
+                "startTimeMinutes": 0,
+                "stopTimeHours": 16,
+                "stopTimeMinutes": 0
+            },
+            {
+                "id": 1,
+                "isActive": true,
+                "startTimeHours": 8,
+                "startTimeMinutes": 0,
+                "stopTimeHours": 16,
+                "stopTimeMinutes": 0
+            },
+            {
+                "id": 2,
+                "isActive": true,
+                "startTimeHours": 8,
+                "startTimeMinutes": 0,
+                "stopTimeHours": 16,
+                "stopTimeMinutes": 0
+            },
+            {
+                "id": 3,
+                "isActive": true,
+                "startTimeHours": 8,
+                "startTimeMinutes": 0,
+                "stopTimeHours": 16,
+                "stopTimeMinutes": 0
+            },
+            {
+                "id": 4,
+                "isActive": true,
+                "startTimeHours": 8,
+                "startTimeMinutes": 0,
+                "stopTimeHours": 16,
+                "stopTimeMinutes": 0
+            },
+            {
+                "id": 5,
+                "isActive": true,
+                "startTimeHours": 8,
+                "startTimeMinutes": 0,
+                "stopTimeHours": 16,
+                "stopTimeMinutes": 0
+            },
+            {
+                "id": 6,
+                "isActive": true,
+                "startTimeHours": 8,
+                "startTimeMinutes": 0,
+                "stopTimeHours": 16,
+                "stopTimeMinutes": 0
+            }
+        ],
+        "resetTimeHours": 0,
+        "resetTimeMinutes": 0,
+        "SSID": "Office @ SELECO_2G",
+        "password": "Seleco.961c#",
+        "deviceName": "lightExternal",
+        "deepSleepMode": 0,
+        "currentLocationLongitude": 17.038538,
+        "currentLocationLatitude": 51.107883,
+        "isSlave:": false,
+        "slaveList": [{
+                "addressIP": "192.168.10.168"
+            },
+            {
+                "addressIP": "192.168.10.1"
+            }
+        ],
+        "weatherConfig": {
+            "hostname": "api.openweathermap.org",
+            "apiKey": "7d81e107c1563741afe4a8c2e26ed0b3",
+            "part": "current",
+            "lang": "pl",
+            "units": "metric",
+            "exclude": "minutely,daily,hourly"
+        },
+        "serverConfig": {
+            "telnetPort": 23,
+            "wwwPort": 80,
+            "configPort": 8080,
+            "actualWanIP": "0.0.0.0",
+            "actualLanIP": "0.0.0.0"
+        },
+        "pinConfig": [{
+                "pinNumber": 14,
+                "pinMode": "read",
+                "pinState": "LOW"
+            },
+            {
+                "pinNumber": 16,
+                "pinMode": "read",
+                "pinState": "LOW"
+            }
+        ],
+        "dateTimeSettings": {
+            "daySavingTime": 1,
+            "timeZone": 2,
+            "serverNTP": "tempus1.gum.gov.pl",
+            "requestFrequency": 60000
+        }
+    }
+}

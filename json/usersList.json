@@ -1,0 +1,13 @@
+{
+    "users": [{
+            "userName": "admin",
+            "password": "hasło",
+            "isAdmin": true
+        },
+        {
+            "userName": "prouve",
+            "password": "hasło2",
+            "isAdmin": false
+        }
+    ]
+}

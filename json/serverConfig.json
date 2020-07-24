@@ -1,0 +1,8 @@
+{
+    "telnetPort": 23,
+    "wwwPort": 80,
+    "configPort": 8080,
+    "actualWanIP": "0.0.0.0",
+    "actualLanIP": "0.0.0.0",
+    "serverName": "lightExternal"
+}

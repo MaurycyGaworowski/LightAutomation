@@ -1,0 +1,8 @@
+{
+    "hostname": "api.openweathermap.org",
+    "apiKey": "7d81e107c1563741afe4a8c2e26ed0b3",
+    "part": "current",
+    "lang": "pl",
+    "units": "metric",
+    "exclude": "minutely,daily,hourly"
+}

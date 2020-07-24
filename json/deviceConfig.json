@@ -1,0 +1,15 @@
+{
+    "deviceName": "device id",
+    "isDusk2DawnEnabled": false,
+    "isSlave": false,
+    "isOtaEnabled": false,
+    "isLightAutomationEnabled": false,
+    "isAutoResetEnabled": false,
+    "rellayNormallyClosed": false,
+    "apActiveTime": 3600,
+    "otaActiveTime": 3600,
+    "resetTimeHours": 3600,
+    "resetTimeMinutes": 3600,
+    "deepSleepMode": 0,
+    "deepSleepInterval": 3600
+}

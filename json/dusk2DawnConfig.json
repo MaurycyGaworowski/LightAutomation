@@ -1,0 +1,8 @@
+{
+    "currentLocationLongitude": 17.038538,
+    "currentLocationLatitude": 51.107883,
+    "dusk2DawnHoursStartDelay": 1,
+    "dusk2DawnHoursStopDelay": 2,
+    "dusk2DawnMinutesStartDelay": 10,
+    "dusk2DawnMinutesStopDelay": 15
+}

@@ -1,0 +1,27 @@
+{
+    "lat": 51.11,
+    "lon": 17.04,
+    "timezone": "Europe/Warsaw",
+    "timezone_offset": 7200,
+    "current": {
+        "dt": 1595238903,
+        "sunrise": 1595214036,
+        "sunset": 1595271327,
+        "temp": 26.05,
+        "feels_like": 27.67,
+        "pressure": 1014,
+        "humidity": 57,
+        "dew_point": 16.87,
+        "uvi": 6.98,
+        "clouds": 20,
+        "visibility": 10000,
+        "wind_speed": 1,
+        "wind_deg": 0,
+        "weather": [{
+            "id": 801,
+            "main": "Clouds",
+            "description": "lekkie zachmurzenie",
+            "icon": "02d"
+        }]
+    }
+}
