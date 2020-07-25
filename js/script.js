@@ -1,7 +1,10 @@
 function startPage() {
-  document.querySelector(".user").classList.add("d-none");
-  document.querySelector(".admin").classList.add("d-none");
-  document.querySelector(".logout").classList.add("d-none");
+//   document.querySelector(".user").classList.add("d-none");
+//   document.querySelector(".admin").classList.add("d-none");
+//   document.querySelector(".logout").classList.add("d-none");
+  $('.user').hide();
+  $('.admin').hide();
+  $('.logout').hide();
 }
 
 function logout() {
@@ -14,10 +17,14 @@ function logout() {
 
   today = dd + "." + mm + "." + yyyy + " o godzinie " + HH + ":" + MM;
 
-  document.querySelector(".user").classList.add("d-none");
-  document.querySelector(".admin").classList.add("d-none");
-  document.querySelector(".logout").classList.add("d-none");
-  document.querySelector(".login").classList.remove("d-none");
+//   document.querySelector(".user").classList.add("d-none");
+  $('.user').hide(300);
+//   document.querySelector(".admin").classList.add("d-none");
+  $('.admin').hide(300);
+//   document.querySelector(".logout").classList.add("d-none");
+  $('.logout').hide(300);
+//   document.querySelector(".login").classList.remove("d-none");
+  $('.login').show(300);
   document.querySelector(".info").classList.remove("d-none", "alert-danger");
   document.querySelector(".info").classList.add("alert-success");
   document.querySelector(".info").innerHTML = "Wylogowano z aplikacji</br>" + today;
@@ -179,21 +186,26 @@ function readOptionTimeZone(id) {
     $(id).append($("<option></option>").val(r).html(p));
   });
 };
-
+let isShowed
 function typeCheck(classP, inputId, showDiv) {
   if ($(classP)[0]) {
-    document.querySelector(showDiv).classList.remove("d-none");
+    // document.querySelector(showDiv).classList.remove("d-none");
+    isShowed=true;
+    $(showDiv).show(300);
   } else {
-    document.querySelector(showDiv).classList.add("d-none");
+      isShowed=false;
+    // document.querySelector(showDiv).classList.add("d-none");
+    $(showDiv).hide(300);
   }
 
-  $(function () {
+  $(function() {
     $(inputId).change(function () {
       if ($(this).prop("checked")) {
-        document.querySelector(showDiv).classList.remove("d-none");
+        // document.querySelector(showDiv).classList.remove("d-none");
+        $(showDiv).show(300);
       } else {
-        //   document.querySelector(showDiv).classList.fa
-        document.querySelector(showDiv).classList.add("d-none");
+          $(showDiv).hide(300);
+        // document.querySelector(showDiv).classList.add("d-none");
       }
     });
   });
@@ -203,26 +215,40 @@ function checkCred() {
   var loginVal = document.querySelector("#inputLogin").value;
   var passwordVal = document.querySelector("#inputPassword").value;
   var passwordHash = CryptoJS.MD5(passwordVal);
-//   console.log(passwordHash);
-  if (loginVal == "mauro" && passwordVal == 123456) {
-    document.querySelector(".login").classList.add("d-none");
-    document.querySelector(".user").classList.remove("d-none");
-    document.querySelector(".logout").classList.remove("d-none");
-    document.querySelector(".info").classList.add("d-none");
+//   console.log(passwordHash.toString(CryptoJS.enc.Hex));
+  let userpass = passwordHash.toString(CryptoJS.enc.Hex);
+  if (loginVal == "mauro" && userpass == "e10adc3949ba59abbe56e057f20f883e") {
+    askJson();
+    // document.querySelector(".login").classList.add("d-none");
+    $('.login').hide(300);
+    // document.querySelector(".user").classList.remove("d-none");
+    $('.user').show(300);
+    // document.querySelector(".logout").classList.remove("d-none");
+    $('.logout').show(300);
+    // document.querySelector(".info").classList.add("d-none");
+    $('.info').hide(300);
   } else {
-    if (loginVal == "serwis" && passwordVal == 12345678) {
-        document.querySelector(".login").classList.add("d-none");
-        document.querySelector(".user").classList.remove("d-none");
-        document.querySelector(".admin").classList.remove("d-none");
-        document.querySelector(".logout").classList.remove("d-none");
-        document.querySelector(".info").classList.add("d-none");
+    if (loginVal == "serwis" && userpass == "25d55ad283aa400af464c76d713c07ad") {
+        askJson();
+        // document.querySelector(".login").classList.add("d-none");
+        $(".login").hide(300);
+        // document.querySelector(".user").classList.remove("d-none");
+        $('.user').show(300);
+        // document.querySelector(".admin").classList.remove("d-none");
+        $('.admin').show(300);
+        // document.querySelector(".logout").classList.remove("d-none");
+        $('.logout').show(300);
+        // document.querySelector(".info").classList.add("d-none");
+        $('.info').hide(300);
     } 
     else {
-      document.querySelector(".info").classList.remove("d-none");
+    //   document.querySelector(".info").classList.remove("d-none");
+      $('.info').show(300);
       document.querySelector(".info").classList.add("alert-danger");
       document.querySelector('.info').innerHTML = ('Niepoprawne dane logowania');
     }
-    document.querySelector(".info").classList.remove("d-none");
+    // document.querySelector(".info").classList.remove("d-none");
+    $('.info').show(300);
     document.querySelector(".info").classList.add("alert-danger");
     document.querySelector('.info').innerHTML = ('Niepoprawne dane logowania');
   }
@@ -253,3 +279,51 @@ function fMode(selector, object){
         $(object).fadeIn();
     });
 };
+
+
+let cfg
+// JSON Parse
+function readJson(file){
+        $.getJSON(file, function(data) {         
+        cfg=JSON.stringify(data);
+            console.log(data);
+        // document.querySelector('#ssid').innerHTML = data.config.SSID;
+    });
+}
+
+let config
+function askJson() {
+    fetch("/json/cfg.json")
+      .then(results => results.json())
+      .then(data => {config = data;
+        // console.log(config.config.SSID);
+        // console.log(config.config.isSlave.toString());
+    updateAll(config);
+    })
+        // .then(data => upadeAll(config))
+  };
+
+  function updateAll(config){
+    switchP("isLightAutomationEnabled", '#typeOf', config, ".settings", ".typeOff")
+    switchP("isDusk2DawnEnabled", '#harmOn', config, ".harmonogram", ".harmOff")
+  }
+
+  function upade(param, id, newData) {
+    document.querySelector(id).innerHTML = newData.config[param];
+    console.log(newData.config.SSID)
+  }
+
+  function switchP(param, id, newData, showDiv, element) {
+      console.log(newData[param]);
+    if (newData[param]){
+        if(!isShowed){
+            $(id).prop('checked', true).change()
+        }
+    
+    }
+    else{
+        if(isShowed){
+            $(id).prop('checked', false).change()
+        }
+    }
+  }

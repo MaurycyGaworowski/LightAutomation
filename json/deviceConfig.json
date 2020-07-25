@@ -1,9 +1,6 @@
 {
-    "deviceName": "device id",
-    "isDusk2DawnEnabled": false,
     "isSlave": false,
     "isOtaEnabled": false,
-    "isLightAutomationEnabled": false,
     "isAutoResetEnabled": false,
     "rellayNormallyClosed": false,
     "apActiveTime": 3600,
