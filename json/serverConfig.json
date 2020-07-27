@@ -2,7 +2,7 @@
     "telnetPort": 23,
     "wwwPort": 80,
     "configPort": 8080,
-    "actualWanIP": "0.0.0.0",
-    "actualLanIP": "0.0.0.0",
+    "actualWanIP": "188.122.2.13",
+    "actualLanIP": "192.168.10.101",
     "serverName": "lightExternal"
 }

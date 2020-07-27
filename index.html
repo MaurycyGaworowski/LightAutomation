@@ -13,7 +13,7 @@
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
             crossorigin="anonymous">
     </head>
-    <body>
+    <body onload="checkCookie()">
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -61,13 +61,14 @@
         <!-- user -->
         <section class="user">
             <div class="container shadow lower">
+                <h2 id="deviceName" class=""></h2>
                 <h3>Tryb pracy</h3>
                 <input class="mg" id="typeOf" data-size="normal" type="checkbox"
                     data-toggle="toggle" data-width="100%" data-onstyle="success
                     typeOn" data-offstyle="danger typeOff" data-off="Sterowanie
                     za pomocą czujnika ruch" data-on="Sterowanie za pomocą
                     harmonogramu">
-                <div class="settings ">
+                <div class="settings">
                     <h3>Harmonogram</h3>
                     <input id="harmOn" data-size="normal" type="checkbox"
                         data-toggle="toggle" data-width="100%"
@@ -393,13 +394,26 @@
         <section class="admin">
             <div class="container shadow lower">
                 <div class="settings-admin">
-                    <h3>Ustawienia czasu / likalizacji</h3>
+                    <h3>Ustawienia czasu / lokalizacji</h3>
                     <div class="row r0 align-items-center margin-top">
                         <div class="col-5">Ustawienia strefy czasowej:</div>
                         <div class="col-7">
                             <select class="custom-select my-1 mr-sm-2" id="timeZoneSelect">
                                 <option selected>Wybierz strefe czasową</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="row r0 align-items-center margin-top">
+                        <div class="col-2">Serwer NTP:</div>
+                        <div class="col-5">
+                            <input type="text" class="form-control" placeholder="serwer NTP">
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" placeholder="Częstotliwość sprawdzania">
+                        </div>
+                        <div class="col-1">
+                            <input class="form-check-input" type="checkbox" id="DST" value="DST">
+                            <label class="form-check-label" for="DST">DST</label>
                         </div>
                     </div>
                     <div class="row r1 align-items-center margin-top">
@@ -421,23 +435,51 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row r1 align-items-center margin-top justify-content-center">
+                    <div class="row margin-top justify-content-center">
                         <button type="button" class="btn btn-secondary btn-md btn-block col-4" onclick="getLocation()">Pobierz geolokalizację</button>
-                        <button type="button" class="btn btn-success btn-md btn-block col-4" >Zapisz ustawienia</button>
+                    </div>    
+                    <h3 class="margin-top">Opóźnienia / wcześniejszy start</h3>
+                    <div class="row r1 align-items-center margin-top">
+                        <div class="col-4">
+                            
+                        </div>
+                        <div class="col">Godzina</div>
+                        <div class="col">Minuta</div>
+                    </div>    
+                    <div class="row r1 align-items-center margin-top">    
+                        <div class="col">Rozpocznij wcześniej</div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
                     </div>
-                    <h3 class="lower">Aktualne parmetry sieci</h3>
+                    <div class="row r1 align-items-center margin-top">    
+                        <div class="col">Zakończ później</div>    
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="row margin-top justify-content-center">
+                        <button type="button" class="btn btn-success btn-md btn-block col-4">Zapisz ustawienia</button>
+                    </div>
+                    <h3 class="margin-top">Aktualne parmetry sieci</h3>
                     <div class="row r2 align-items-center margin-top">
                         <div class="col-4 d-inline p-2 bg-light text-wrap">LAN IP</div>
                         <div class="col-4 d-inline p-2 bg-light text-wrap">WAN IP</div>
                         <div class="col-4 d-inline p-2 bg-light text-wrap">WLAN</div>
                     </div>
                     <div class="row r2 align-items-center">
-                        <div id="lanip" class="col-4 text-wrap">192.168.10.201</div>
-                        <div id="wanip" class="col-4 text-wrap"></div>
+                        <div id="lanip" class="col-4 text-wrap">Błąd konfiguracji</div>
+                        <div id="wanip" class="col-4 text-wrap">Błąd konfiguracji</div>
                         <div id="ssid" class="col-4 text-wrap">Błąd konfiguracji</div>
                     </div>
                     <div class="row margin-top justify-content-center">
-                        <div class="col-6"><button type="button" class="btn btn-info btn-md btn-block" data-toggle="modal" data-target="#wirelessModal">Nowe połączenie</button></div>
+                        <div class="col-4"><button type="button" class="btn btn-info btn-md btn-block" data-toggle="modal" data-target="#wirelessModal" onclick="askJsonWifi();">Ustawienia sieci</button></div>
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="wirelessModal" tabindex="-1" role="dialog" aria-labelledby="wirelessModalLabel" aria-hidden="true">
@@ -450,6 +492,10 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
+                                    <div id="wifiProfiles">
+                                        <h3>Zapisane profile sieci WiFi</h3>
+                                        
+                                    </div>
                                     <div class="row margin-top justify-content-center newSSID">
                                         <div class="col">
                                             <input class="form-control" type="text" placeholder="SSID" id="SSID"/>
@@ -466,7 +512,7 @@
                             </div>
                         </div>
                     </div>
-                    <h3 class="lower">Ustawienia master / slave</h3>
+                    <h3 class="margin-top">Ustawienia master / slave</h3>
                     <div class="row r2 align-items-center">
                         <div class="col-5">
                             <div class="custom-control custom-switch">
