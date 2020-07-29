@@ -2,12 +2,12 @@
     "wifiKnownProfiles": [{
             "SSID": "Office @ SELECO_2G",
             "password": "Seleco.961c#",
-            "isSelected": true
+            "isSelected": false
         },
         {
             "SSID": "Prouve_guest",
             "password": "Tulipan12",
-            "isSelected": false
+            "isSelected": true
 
         }
     ]

@@ -406,15 +406,18 @@
                     <div class="row r0 align-items-center margin-top">
                         <div class="col-2">Serwer NTP:</div>
                         <div class="col-5">
-                            <input type="text" class="form-control" placeholder="serwer NTP">
+                            <input id="ntp" type="text" class="form-control" placeholder="serwer NTP">
                         </div>
                         <div class="col-3">
-                            <input type="text" class="form-control" placeholder="Częstotliwość sprawdzania">
+                            <input id="refNtp" type="text" class="form-control" placeholder="Częstotliwość sprawdzania (ms)">
                         </div>
                         <div class="col-1">
                             <input class="form-check-input" type="checkbox" id="DST" value="DST">
                             <label class="form-check-label" for="DST">DST</label>
                         </div>
+                    </div>
+                    <div class="row margin-top justify-content-center">
+                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="saveTimeSettings()">Zapisz ustawienia</button>
                     </div>
                     <div class="row r1 align-items-center margin-top">
                         <div class="col-4">Położenie geograficzne:</div>
@@ -449,23 +452,23 @@
                     <div class="row r1 align-items-center margin-top">    
                         <div class="col">Rozpocznij wcześniej</div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="">
+                            <input id="d2dfH" type="text" class="form-control" placeholder="">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="">
+                            <input id="d2dfM" type="text" class="form-control" placeholder="">
                         </div>
                     </div>
                     <div class="row r1 align-items-center margin-top">    
                         <div class="col">Zakończ później</div>    
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="">
+                            <input id="d2dtH" type="text" class="form-control" placeholder="">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="">
+                            <input id="d2dtM" type="text" class="form-control" placeholder="">
                         </div>
                     </div>
                     <div class="row margin-top justify-content-center">
-                        <button type="button" class="btn btn-success btn-md btn-block col-4">Zapisz ustawienia</button>
+                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="saveD2dSettings()">Zapisz ustawienia</button>
                     </div>
                     <h3 class="margin-top">Aktualne parmetry sieci</h3>
                     <div class="row r2 align-items-center margin-top">
@@ -493,18 +496,31 @@
                                 </div>
                                 <div class="modal-body">
                                     <div id="wifiProfiles">
-                                        <h3>Zapisane profile sieci WiFi</h3>
+                                        <h3>Zapisane profile sieci WiFi</h3> 
                                         
                                     </div>
-                                    <div class="row margin-top justify-content-center newSSID">
-                                        <div class="col">
-                                            <input class="form-control" type="text" placeholder="SSID" id="SSID"/>
+                                    <div class="row margin-top addWifi">
+                                        <h3>Dodaj profil sieci WiFi</h3>
+                                    </div>
+                                    <div class="row justify-content-center newSSID">    
+                                        <div class="col-5">
+                                            <input class="form-control" maxlength="20" type="text" placeholder="SSID" id="SSID"/>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-5">
                                             <input class="form-control" type="text" placeholder="PASSWORD" id="PASS"/>
                                         </div>
+                                        <div class="col-2">
+                                            <button is="addWifiProfile" class="btn btn-sm btn-success" onclick="addWifiProfile();">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="row justify-content-center newSSID margin-top-10">
+                                        <button id="searchWifi" class="btn btn-sm btn-success" onclick="askJsonAvailableWifi();">Szukaj</button>
+                                    </div>
+                                    <div id="listWifi" class="row justify-content-center newSSID margin-top-10">
+
                                     </div>
                                 </div>
+
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="dropSSID()">Zamknij / anuluj</button>
                                     <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveSSID()">Zapisz zmiany</button>
@@ -523,9 +539,9 @@
                     </div>
                     <div class="addSlave d-none margin-top-10 w3-animate-left">
                         <div class="field_wrapper">
-                            <div class="row margin-top-10">
-                                <input class="form-control col col-md-4 col-lg-3 h-auto-text-center" type="text" name="field_name[]" value=""/>
-                                <a href="javascript:void(0);" class="add_button col col-md-4 col-lg-3 h-auto-text-center" title="Dodaj urządzenie podrzędne">
+                            <div id="rowControl" class="row margin-top-10">
+                                <input id="f0" class="form-control col col-md-4 col-lg-3 h-auto-text-center" type="text" name="field_name[0]" value=""/>
+                                <a id="addS" href="javascript:void(0);" class="add_button col col-md-4 col-lg-3 h-auto-text-center" title="Dodaj urządzenie podrzędne">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
                                             <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
@@ -546,7 +562,7 @@
         <section class="logout">
             <h6 class="d-none">Logout</h6>
                 <div class="container shadow lower">
-                    <button type="button" name="logout" class="btn btn-danger btn-md btn-block" onclick="logout();">Wyloguj</button>
+                    <button id="logOut" type="button" name="logout" class="btn btn-danger btn-md btn-block" onclick="logout();">Wyloguj</button>
                     <button type="button" name="admin" class="btn btn-info btn-md btn-block" onclick="saveWork();">Wprowadź parametry do urządzenia</button>
                 </div>
         </section>

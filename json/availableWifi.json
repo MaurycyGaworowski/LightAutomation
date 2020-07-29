@@ -1,0 +1,11 @@
+[
+    {"rssi":-64,"ssid":"UPC2C5A68","bssid":"F8:1D:0F:DC:5A:68","channel":1,"secure":4,"hidden":false},
+    {"rssi":-74,"ssid":"1e7e07b7","bssid":"F4:91:1E:7E:07:B7","channel":1,"secure":4,"hidden":false},
+    {"rssi":-47,"ssid":"Office @ SELECO_2G","bssid":"B4:FB:E4:86:E9:BB","channel":1,"secure":4,"hidden":false},
+    {"rssi":-51,"ssid":"Guest @ SELECO","bssid":"B6:FB:E4:96:E9:BB","channel":1,"secure":4,"hidden":false},
+    {"rssi":-74,"ssid":"Orange_Swiatlowod_1E70","bssid":"B8:66:85:6D:1E:70","channel":1,"secure":4,"hidden":false},
+    {"rssi":-55,"ssid":"TP-Link_3AED","bssid":"98:DA:C4:C9:3A:ED","channel":5,"secure":8,"hidden":false},
+    {"rssi":-79,"ssid":"HP-Print-c5-Color LaserJet MFP","bssid":"C4:8E:8F:05:A1:C5","channel":5,"secure":4,"hidden":false},
+    {"rssi":-63,"ssid":"Drukarnia","bssid":"88:A6:C6:E0:25:85","channel":6,"secure":8,"hidden":false},
+    {"rssi":-77,"ssid":"OPONY","bssid":"00:12:2A:C2:04:88","channel":11,"secure":8,"hidden":false}
+]

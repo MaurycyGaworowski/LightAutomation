@@ -1,6 +1,6 @@
 {
     "daySavingTime": 1,
-    "timeZone": 2,
+    "timeZone": 3,
     "serverNTP": "tempus1.gum.gov.pl",
     "requestFrequency": 60000
 }
