@@ -1,5 +1,5 @@
 {
-    "isSlave": false,
+    "isSlave": true,
     "slaveList": [{
             "addressIP": "192.168.10.168"
         },

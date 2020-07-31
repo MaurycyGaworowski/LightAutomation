@@ -117,3 +117,7 @@ padding: .1rem .1rem;
     font-size: x-small;
     padding: .1rem .1rem;
     }
+
+.add_button {
+    margin-right: 15px;
+}    

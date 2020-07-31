@@ -80,6 +80,7 @@ function saveSSID() {
 };
 
 $(document).ready(function () {
+  
   var maxField = 10; //Input fields increment limitation
   var addButton = $(".add_button"); //Add button selector
   var wrapper = $(".field_wrapper"); //Input field wrapper
@@ -94,29 +95,34 @@ $(document).ready(function () {
     //New input field html
 
 //   var x = 1; //Initial field counter is 1
-
   //Once add button is clicked
   $(addButton).click(function () {
     //Check maximum number of input fields
     if (x < maxField) {
-      x++; //Increment field counter
+      let nameId="f";
+      
+      nameId+=x.toString();
       var fieldHTML =
-    '<div id="remSla" class="row margin-top-10 w3-animate-left">\
-        <input id="f' + x +'" class="form-control col col-md-4 col-lg-3 h-auto-text-center" type="text" name="field_name[' + x + ']" value=""/>\
-        <a id="remS" href="javascript:void(0);" class="remove_button col col-md-4 col-lg-3 h-auto-text-center" title="Usuń">\
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/><path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/></svg>\
+    "<div id=\"remSla\" class=\"row margin-top-10 w3-animate-left\">\
+        <input onblur=\"ValidateIPaddress(this.value, " + nameId + ")\" id= \""+nameId+"\" class=\"form-control col col-md-4 col-lg-3 h-auto-text-center\" type=\"text\" name=\"field_name[" + x + "]\" value/>"+
+        "<a id=\"remS\" href=\"javascript:void(0);\" class=\"remove_button col col-md-4 col-lg-3 h-auto-text-center\" title=\"Usuń\">\
+            <svg width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\" class=\"bi bi-x\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\"><path fill-rule=\"evenodd\" d=\"M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z\"/><path fill-rule=\"evenodd\" d=\"M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z\"/></svg>\
         </a>\
-    </div>';
+    </div>";
+    x++; //Increment field counter
+
       $(wrapper).append(fieldHTML); //Add field html
     }
+    
   });
-
   //Once remove button is clicked
   $(wrapper).on("click", ".remove_button", function (e) {
     e.preventDefault();
     $(this).parent("div").remove(); //Remove field html
     x--; //Decrement field counter
   });
+  
+  
 });
 
 function smTypeCheck() {
@@ -196,20 +202,19 @@ var hours = [
   "22",
   "23",
 ];
+
+// 
 let minutes =[];
-for (let index = 0; index < 60; index++) {
-    
-    !(index%15)?minutes.push(index):null ;
+for (let index = 0; index < 60; index++){
+    !(index%15)?minutes.push(index):null;
 }
 let hours2 =[];
-for (let index = 0; index < 24; index++) {
+for (let index = 0; index < 24; index++){
     hours2.push(index);
 }
-
-
-console.log(minutes);
-console.log(hours2);
-
+// console.log(minutes);
+// console.log(hours2);
+// 
 
 var minuts = ["0", "15", "30", "45"];
 var timeZone = [
@@ -330,12 +335,13 @@ function wanIP() {
 };
 
 function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    document.querySelector("#demo").innerHTML =
-      "Geolocation is not supported by this browser.";
-  }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } 
+    else {
+        document.querySelector("#demo").innerHTML =
+        "Geolocation is not supported by this browser.";
+    }
 };
 
 function showPosition(position) {
@@ -361,16 +367,15 @@ function askJson() {
         // .then(data => upadeAll(config))
 };
 
-  function updateAll(config){
+function updateAll(config){
     showId("deviceName", '#deviceName', config)  
     switchP("isLightAutomationEnabled", '#typeOf', config)
     switchP("isDusk2DawnEnabled", '#harmOn', config)
-  };
+};
 
-  function update(param, id, newData) {
+function update(param, id, newData) {
     document.querySelector(id).innerHTML = newData.config[param];
-    console.log(newData.config.SSID)
-  };
+};
 
   function showId(param, id, newData) {
   document.querySelector(id).innerHTML = newData[param];
@@ -390,26 +395,14 @@ function askJson() {
     }
   };
 
-  function sednJson(uri){
-    fetch(uri, {
-        method: "post",
-        body: formData
-    })
-    .then(res => res.json())
-    .then(res => {
-        // console.log("Dodałem użytkownika:");
-        console.log(res);
-    })
-  }
-
-  function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }
+}
 
-  function getCookie(cname) {
+function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
     for(var i = 0; i < ca.length; i++) {
@@ -422,9 +415,9 @@ function askJson() {
       }
     }
     return "";
-  }
+};
 
-  function checkCookie() {
+function checkCookie() {
     var user=getCookie("session");
     console.log(user);
     if (user == "e10adc3949ba59abbe56e057f20f883e") {
@@ -434,7 +427,8 @@ function askJson() {
         $('.user').show(300);
         $('.logout').show(300);
         $('.info').hide(300);
-      } else {
+    } 
+    else {
         if (user == "25d55ad283aa400af464c76d713c07ad") {
             askJson();
             askJsonSsid();
@@ -457,19 +451,16 @@ function askJson() {
         $('.info').show(300);
         document.querySelector(".info").classList.add("alert-danger");
         document.querySelector('.info').innerHTML = ('Niepoprawne dane logowania');
-      }
-  }
+    }
+};
 
   let configSsid
   function askJsonSsid() {
       fetch("/json/wifiConfig.json")
         .then(results => results.json())
         .then(data => {configSsid = data;
-        //   console.log(configSsid.SSID);
-          // console.log(config.config.isSlave.toString());
       updateSsid(configSsid);
       })
-          // .then(data => upadeAll(config))
     };
   
     function updateSsid(config){
@@ -480,26 +471,23 @@ function askJson() {
     document.querySelector(id).innerHTML = newData[param];
     };
 
-    let configIp;
-  function askJsonIp() {
-      fetch("/json/serverConfig.json")
+let configIp;
+function askJsonIp() {
+    fetch("/json/serverConfig.json")
         .then(results => results.json())
         .then(data => {configIp = data;
-        //   console.log(configIp.SSID);
-          // console.log(config.config.isSlave.toString());
-      updateIp(configIp);
-      })
-          // .then(data => upadeAll(config))
+        updateIp(configIp);
+        })
     };
   
-    function updateIp(config){
-      showIp("actualWanIP", '#wanip', config)
-      showIp("actualLanIP", '#lanip', config)
-    };
+function updateIp(config){
+    showIp("actualWanIP", '#wanip', config)
+    showIp("actualLanIP", '#lanip', config)
+};
   
-    function showIp(param, id, newData) {
+function showIp(param, id, newData) {
     document.querySelector(id).innerHTML = newData[param];
-    };
+};
     
 let configWifi
 function askJsonWifi() {
@@ -578,8 +566,9 @@ function askJsonWifi() {
       
 let countRows;
 function deleteProfile(index){
-    document.getElementById("tableWifi").deleteRow(index);
-    let newIndex = index -1;
+
+    document.getElementById("tr"+index).remove();
+    // document.getElementById("tableWifi").deleteRow(index);
 };
 
 function addWifiProfile(){
@@ -587,7 +576,9 @@ function addWifiProfile(){
         alert("puste pola, nic nie dodam!");
     } 
     // else if (document.querySelector('#PASS').value === ""){alert("hasło puste?");}
+
     else {
+      if (document.getElementById("tableWifi").rows.length<10){
         var table = document.getElementById("tableWifi");
         var row = table.insertRow();
         row.id = "tr"+ countRows;
@@ -599,9 +590,15 @@ function addWifiProfile(){
         cell2.innerHTML = document.querySelector('#PASS').value;
         cell3.innerHTML = "<input class='form-check-input checkboxstyle' type='radio' name='inlineRadioOptions' id='wifiBox" + countRows + "'/>";
         cell4.innerHTML = "<button class='btn-danger btn-sm wifiRemove' type='button' name='buttonGroup' id='wifiRemove" + countRows + "' onclick='deleteProfile(" + countRows + ");'>Usuń</button>";
-    countRows++;
+        console.log("obecny " + countRows);
+        countRows++;
+    console.log("następny " + countRows)
     document.querySelector('#SSID').value = ""; 
     document.querySelector('#PASS').value = ""; 
+      }else{
+        alert("Maksymalnie mozna zapisać 10 profili");
+
+      }
     }
       
 };
@@ -675,17 +672,29 @@ let slave
 function askJsonSlave() {
     fetch("/json/slaveList.json")
       .then(results => results.json())
-      .then(data => {slave = data;
+      .then(data => {
+            slave = data;
             isSlave(slave);
+
             if (slave.isSlave == false){
                 var l = 0;
                 slave.slaveList.forEach(element => {
-                l++
-                $('#addS').trigger('click');
-                document.querySelector("#f" + l +"").value = element.addressIP;
-                })
+                  // console.log(element.addressIP);
+                  $('#addS').trigger('click');
+                  document.querySelector("#f" + l).value = element.addressIP;
+                  l++;
+              })
             }
             else{
+              // 
+              var l = 0;
+                slave.slaveList.forEach(element => {
+                  // console.log(element.addressIP);
+                  $('#addS').trigger('click');
+                  document.querySelector("#f" + l).value = element.addressIP;
+                  l++;
+              })
+              // 
             }    
         })  
 };
@@ -730,11 +739,9 @@ function askJsonAvailableWifi() {
     fetch("/json/availableWifi.json")
       .then(results => results.json())
       .then(data => {aWifi = data;
-        console.log(aWifi);
         var i = 0
         aWifi.forEach(element =>{
             i++
-            console.log(element.ssid);
             tr = document.createElement('tr'),
             tr.id = "tr"+ i;
             td= document.createElement('td');
@@ -749,7 +756,6 @@ function askJsonAvailableWifi() {
             button.nameB = "buttonGroup";
             button.id = "addProfile" + i;
             button.setAttribute("onclick","addProfile(\"" + element.ssid + "\");");
-            // button.setAttribute("onclick",document.querySelector("#SSID").value = (element.ssid));
             td.appendChild(button);
             tr.appendChild(td);
             tbody.appendChild(tr);
@@ -769,8 +775,7 @@ function addProfile(profile){
     document.querySelector("#SSID").value = (profile);
 };
 
-// tuturututu
-let harm
+let harm;
 function askJsonWeekHarm() {
     fetch("/json/weekDayAutomation.json")
       .then(results => results.json())
@@ -784,47 +789,68 @@ function askJsonWeekHarm() {
         harm.forEach(element =>{
             let day = weekDay[element.id];
             let fH = element.startTimeHours;
-            console.log(fH);
             let currentDay = document.querySelector(toggle+day.toString());
             element.isActive?currentDay.checked = true:currentDay.checked = false;
             boxCheckHarmDay(state+day, time+day, harmon+day);
 
-            let fromH ="#fromH-";
-            document.querySelector(fromH+day.toString()).value = element.startTimeHours;
             let fromM ="#fromM-";
-            document.querySelector(fromM+day.toString()).value= element.startTimeMinutes;
+            let fromH ="#fromH-";
             let toH ="#toH-";
-            document.querySelector(toH+day.toString()).value= element.stopTimeHours;
             let toM ="#toM-";
+            document.querySelector(fromH+day.toString()).value = element.startTimeHours;
+            document.querySelector(fromM+day.toString()).value= element.startTimeMinutes;
+            document.querySelector(toH+day.toString()).value= element.stopTimeHours;
             document.querySelector(toM+day.toString()).value= element.stopTimeMinutes;
             console.log();
         })
-    // updateHarm(harm);
-
     })
 };
 
-  function updateHarm(harm){
-      console.log(harm.weekDayAutomation);
-    // showId("deviceName", '#deviceName', harm)  
-    // switchP("isLightAutomationEnabled", '#typeOf', harm)
-    // switchHarm("isActive", '#stateMon', harm)
-  };
+function ValidateIPaddress(ipaddress, id) {  
+  if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress)) {  
+    let ident = "#" + id.id;
+    document.querySelector(ident).style = "border-color: green;";
+    return true;
+  }  
+    let ident = "#" + id.id;
+    document.querySelector(ident).style = "border-color: red;";
+    id.value ="";
+    return false;
+} 
 
-    function showId(param, id, newData) {
-  document.querySelector(id).innerHTML = newData[param];
-  };
 
-  function switchHarm(param, id, newData) {
-    // if (newData[param]){
-    //     if(!isActive){
-    //         $(id).prop('checked', true).change()
-    //     }
-    
-    // }
-    // else{
-    //     if(isActive){
-    //         $(id).prop('checked', false).change()
-    //     }
-    // }
-  };
+// finally sending first JSON back... at least i'm trying...
+
+
+
+function sendJsonSm(){
+  if (document.querySelector("#smType").checked == true){
+    // MASTER
+    let isSlave = false;
+    let count = $("div[id^=remSla]").length
+          var slaveListJson = {"isSlave": isSlave,
+          "slaveList": []}
+    for(var i = 0; i < count; i++) {
+      addressIp ={addressIP: document.querySelector("#f" + i).value};
+      // console.log(addressIp);
+      slaveListJson.slaveList.push(addressIp);  
+    }  
+    console.log("Tryb master ", JSON.stringify(slaveListJson));
+    console.log("Tryb master ", slaveListJson);
+  }
+  else{
+    // SLAVE
+    let isSlave = true;
+    let count = $("div[id^=remSla]").length
+          var slaveListJson = {"isSlave": isSlave,
+          "slaveList": []}
+    for(var i = 0; i < count; i++) {
+      addressIp ={addressIP: document.querySelector("#f" + i).value};
+      // console.log(addressIp);
+      slaveListJson.slaveList.push(addressIp);  
+    }  
+    console.log("Tryb slave ", JSON.stringify(slaveListJson));
+    console.log("Tryb slave ", slaveListJson);
+  }
+
+}
