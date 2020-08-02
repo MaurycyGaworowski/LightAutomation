@@ -38,11 +38,7 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="/css/style.css">
         <script src="/js/md5.js"></script>
-        <script>
-            // readJson('/json/cfg.json');
-            
-        </script>
-        
+
         <!-- login -->
         <section class="login w3-animate-left">
             <div class="container col-xl-2 col-lg-4 col-md-6 col-sm-8 login">
@@ -417,7 +413,7 @@
                         </div>
                     </div>
                     <div class="row margin-top justify-content-center">
-                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="saveTimeSettings()">Zapisz ustawienia</button>
+                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="sendJsonTime();">Zapisz ustawienia</button>
                     </div>
                     <div class="row r1 align-items-center margin-top">
                         <div class="col-4">Położenie geograficzne:</div>
@@ -468,7 +464,7 @@
                         </div>
                     </div>
                     <div class="row margin-top justify-content-center">
-                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="saveD2dSettings()">Zapisz ustawienia</button>
+                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="sendJsonD2d();">Zapisz ustawienia</button>
                     </div>
                     <h3 class="margin-top">Aktualne parmetry sieci</h3>
                     <div class="row r2 align-items-center margin-top">
@@ -523,7 +519,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="dropSSID()">Zamknij / anuluj</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="saveSSID()">Zapisz zmiany</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="sendJsonWifiProfiles()">Zapisz zmiany</button>
                                 </div>
                             </div>
                         </div>
@@ -604,13 +600,6 @@
             typeCheck('.typeOff', '#typeOf', '.settings');
             typeCheck('.harmOn', '#harmOn', '.harmonogram');
             wanIP();
-            
-            
-            // fMode('.mg', '.settings');
-        </script>
-        <script>
-            // feel 3 to script :)
-        
         </script>
     </body>
 </html>

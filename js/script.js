@@ -1,7 +1,4 @@
 function startPage() {
-//   document.querySelector(".user").classList.add("d-none");
-//   document.querySelector(".admin").classList.add("d-none");
-//   document.querySelector(".logout").classList.add("d-none");
   $('.user').hide();
   $('.admin').hide();
   $('.logout').hide();
@@ -15,92 +12,31 @@ setCookie('session', '', '1');
   var yyyy = today.getFullYear();
   var HH = today.getHours();
   var MM = today.getMinutes();
-
   today = dd + "." + mm + "." + yyyy + " o godzinie " + HH + ":" + MM;
-
-//   document.querySelector(".user").classList.add("d-none");
   $('.user').hide(300);
-//   document.querySelector(".admin").classList.add("d-none");
   $('.admin').hide(300);
-//   document.querySelector(".logout").classList.add("d-none");
   $('.logout').hide(300);
-//   document.querySelector(".login").classList.remove("d-none");
   $('.login').show(300);
   document.querySelector(".info").classList.remove("d-none", "alert-danger");
   document.querySelector(".info").classList.add("alert-success");
   document.querySelector(".info").innerHTML = "Wylogowano z aplikacji</br>" + today;
   location.reload();
-};
-
-function saveHarm() {
-  alert("Zapisano ustawienia harmonogramu");
-};
-
-// let newCfgParam = "{\"deviceName\" : "
-const formData = new FormData();
-formData.append("daviceName", "nameVal");
-// 
-function saveWork() {
-  alert("Zapis ustawień");
-//   newCfgParam += "\"isLightAutomationEnabled\": "
-  if ($('#typeOf').prop('checked')){
-    console.log('1 chcecked');
-    formData.append("isLightAutomationEnabled", true);
-    // newCfgParam += "true";
-  } else{
-    console.log('1 UNchcecked');
-    formData.append("isLightAutomationEnabled", false);
-    // newCfgParam += "false";
-
-};
-// newCfgParam += ",\"isDusk2DawnEnabled\": "
-
-  if ($('#harmOn').prop('checked')){
-    console.log('2 chcecked');
-    formData.append("isDusk2DawnEnabled", true);
-    // newCfgParam += "true";
-  } else{
-    console.log('2 UNchcecked');
-    formData.append("isDusk2DawnEnabled", false);
-    // newCfgParam += "false";
-
-  };
-};
+}
 
 function dropSSID() {
   document.getElementById("SSID").value = "";
   document.getElementById("PASS").value = "";
   document.querySelector("#tableWifi").remove();
-};
-
-function saveSSID() {
-  alert("Zapisano SSID, nastąpi restart urządzenia");
-  document.querySelector("#tableWifi").remove();
-
-};
+}
 
 $(document).ready(function () {
-  
   var maxField = 10; //Input fields increment limitation
   var addButton = $(".add_button"); //Add button selector
   var wrapper = $(".field_wrapper"); //Input field wrapper
   var x = 0; //Initial field counter is 1
-//   var fieldHTML =
-//     '<div class="row margin-top-10 w3-animate-left">\
-//         <input class="form-control col col-md-4 col-lg-3 h-auto-text-center" type="text" name="field_name[' + x + ']" value=""/>\
-//         <a href="javascript:void(0);" class="remove_button col col-md-4 col-lg-3 h-auto-text-center" title="Usuń">\
-//             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.854 4.146a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708-.708l7-7a.5.5 0 0 1 .708 0z"/><path fill-rule="evenodd" d="M4.146 4.146a.5.5 0 0 0 0 .708l7 7a.5.5 0 0 0 .708-.708l-7-7a.5.5 0 0 0-.708 0z"/></svg>\
-//         </a>\
-//     </div>'; 
-    //New input field html
-
-//   var x = 1; //Initial field counter is 1
-  //Once add button is clicked
   $(addButton).click(function () {
-    //Check maximum number of input fields
     if (x < maxField) {
       let nameId="f";
-      
       nameId+=x.toString();
       var fieldHTML =
     "<div id=\"remSla\" class=\"row margin-top-10 w3-animate-left\">\
@@ -113,7 +49,6 @@ $(document).ready(function () {
 
       $(wrapper).append(fieldHTML); //Add field html
     }
-    
   });
   //Once remove button is clicked
   $(wrapper).on("click", ".remove_button", function (e) {
@@ -121,13 +56,10 @@ $(document).ready(function () {
     $(this).parent("div").remove(); //Remove field html
     x--; //Decrement field counter
   });
-  
-  
-});
+})
 
 function smTypeCheck() {
   var checkbox = document.querySelector("input[name=smType]");
-
   checkbox.addEventListener("change", function () {
     if (this.checked) {
       document.querySelector(".smType").innerHTML = "Tryb master";
@@ -137,7 +69,7 @@ function smTypeCheck() {
       document.querySelector(".addSlave").classList.add("d-none");
     }
   });
-};
+}
 
 function boxChecksmType() {
   var checkbox = document.querySelector("input[name=smType]");
@@ -148,11 +80,10 @@ function boxChecksmType() {
     document.querySelector(".smType").innerHTML = "Tryb slave";
     document.querySelector(".addSlave").classList.add("d-none");
   }
-};
+}
 
 function optionTypeCheckHarmDay(stateDay, timeDay, harmDay) {
   var checkboxHarmDay = document.querySelector("input[name=" + harmDay + "]");
-
   checkboxHarmDay.addEventListener("change", function () {
     if (this.checked) {
       document.querySelector(stateDay).innerHTML = "Zakres godzin";
@@ -162,7 +93,7 @@ function optionTypeCheckHarmDay(stateDay, timeDay, harmDay) {
       document.querySelector(timeDay).classList.add("d-none");
     }
   });
-};
+}
 
 function boxCheckHarmDay(stateDay, timeDay, harmDay) {
   var checkboxHarmDay = document.querySelector("input[name=" + harmDay + "]");
@@ -173,9 +104,8 @@ function boxCheckHarmDay(stateDay, timeDay, harmDay) {
     document.querySelector(stateDay).innerHTML = "Automatycznie";
     document.querySelector(timeDay).classList.add("d-none");
   }
-};
+}
 
-// Var table for time and time zones
 var hours = [
   "0",
   "1",
@@ -203,7 +133,6 @@ var hours = [
   "23",
 ];
 
-// 
 let minutes =[];
 for (let index = 0; index < 60; index++){
     !(index%15)?minutes.push(index):null;
@@ -212,9 +141,6 @@ let hours2 =[];
 for (let index = 0; index < 24; index++){
     hours2.push(index);
 }
-// console.log(minutes);
-// console.log(hours2);
-// 
 
 var minuts = ["0", "15", "30", "45"];
 var timeZone = [
@@ -229,7 +155,6 @@ var timeZone = [
   "UTC+04:00",
 ];
 
-// Main function time select
 function readOptionTime(idH, idM) {
   $.each(hours, function (i, p) {
       let b= ""
@@ -241,9 +166,8 @@ function readOptionTime(idH, idM) {
     p<10?b="0":b="";
     $(idM).append($("<option></option>").val(p).html(b + p));
   });
-};
+}
 
-// Main function time zone select
 function readOptionTimeZone(id) {
   $.each(timeZone, function (i, p) {
     var val = p.slice(3, 6);
@@ -251,48 +175,39 @@ function readOptionTimeZone(id) {
     $(id).append($("<option></option>").val(r).html(p));
   });
 };
+
 let isShowed
 function typeCheck(classP, inputId, showDiv) {
   if ($(classP)[0]) {
-    // document.querySelector(showDiv).classList.remove("d-none");
     isShowed=true;
     $(showDiv).show(300);
   } else {
-      isShowed=false;
-    // document.querySelector(showDiv).classList.add("d-none");
+    isShowed=false;
     $(showDiv).hide(300);
   }
-
   $(function() {
     $(inputId).change(function () {
       if ($(this).prop("checked")) {
-        // document.querySelector(showDiv).classList.remove("d-none");
         $(showDiv).show(300);
       } else {
           $(showDiv).hide(300);
-        // document.querySelector(showDiv).classList.add("d-none");
       }
     });
   });
-};
+}
 
 function checkCred() {
   var loginVal = document.querySelector("#inputLogin").value;
   var passwordVal = document.querySelector("#inputPassword").value;
   var passwordHash = CryptoJS.MD5(passwordVal);
-//   console.log(passwordHash.toString(CryptoJS.enc.Hex));
   let userpass = passwordHash.toString(CryptoJS.enc.Hex);
   if (loginVal == "mauro" && userpass == "e10adc3949ba59abbe56e057f20f883e") {
     setCookie('session', userpass, '1');
     askJson();
     askJsonWeekHarm();
-    // document.querySelector(".login").classList.add("d-none");
     $('.login').hide(300);
-    // document.querySelector(".user").classList.remove("d-none");
     $('.user').show(300);
-    // document.querySelector(".logout").classList.remove("d-none");
     $('.logout').show(300);
-    // document.querySelector(".info").classList.add("d-none");
     $('.info').hide(300);
   } else {
     if (loginVal == "serwis" && userpass == "25d55ad283aa400af464c76d713c07ad") {
@@ -304,35 +219,27 @@ function checkCred() {
         askJsonGeo();
         askJsonSlave();
         askJsonWeekHarm();
-        // document.querySelector(".login").classList.add("d-none");
         $(".login").hide(300);
-        // document.querySelector(".user").classList.remove("d-none");
         $('.user').show(300);
-        // document.querySelector(".admin").classList.remove("d-none");
         $('.admin').show(300);
-        // document.querySelector(".logout").classList.remove("d-none");
         $('.logout').show(300);
-        // document.querySelector(".info").classList.add("d-none");
         $('.info').hide(300);
     } 
     else {
-    //   document.querySelector(".info").classList.remove("d-none");
       $('.info').show(300);
       document.querySelector(".info").classList.add("alert-danger");
       document.querySelector('.info').innerHTML = ('Niepoprawne dane logowania');
     }
-    // document.querySelector(".info").classList.remove("d-none");
     $('.info').show(300);
     document.querySelector(".info").classList.add("alert-danger");
     document.querySelector('.info').innerHTML = ('Niepoprawne dane logowania');
   }
-};
+}
 
 function wanIP() {
   fetch("https://api.ipify.org?format=json")
     .then(results => results.json());
-    // .then(dane => console.log(dane.ip));
-};
+}
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -342,58 +249,54 @@ function getLocation() {
         document.querySelector("#demo").innerHTML =
         "Geolocation is not supported by this browser.";
     }
-};
+}
 
 function showPosition(position) {
   document.getElementById("inlineFormInputGroupLo").value = position.coords.longitude;
   document.getElementById("inlineFormInputGroupLa").value = position.coords.latitude;
-};
+}
 
 function fMode(selector, object){
     $(selector).click(function(){
         $(object).fadeIn();
     });
-};
+}
 
 let config
 function askJson() {
     fetch("/json/cfg.json")
       .then(results => results.json())
       .then(data => {config = data;
-        // console.log(config.config.SSID);
-        // console.log(config.config.isSlave.toString());
     updateAll(config);
     })
-        // .then(data => upadeAll(config))
-};
+}
 
 function updateAll(config){
     showId("deviceName", '#deviceName', config)  
     switchP("isLightAutomationEnabled", '#typeOf', config)
     switchP("isDusk2DawnEnabled", '#harmOn', config)
-};
+}
 
 function update(param, id, newData) {
     document.querySelector(id).innerHTML = newData.config[param];
-};
+}
 
-  function showId(param, id, newData) {
-  document.querySelector(id).innerHTML = newData[param];
-  };
+function showId(param, id, newData) {
+document.querySelector(id).innerHTML = newData[param];
+}
 
-  function switchP(param, id, newData) {
-    if (newData[param]){
-        if(!isShowed){
-            $(id).prop('checked', true).change()
-        }
-    
+function switchP(param, id, newData) {
+  if (newData[param]){
+      if(!isShowed){
+          $(id).prop('checked', true).change()
+      }
+  }
+  else{
+    if(isShowed){
+      $(id).prop('checked', false).change()
     }
-    else{
-        if(isShowed){
-            $(id).prop('checked', false).change()
-        }
-    }
-  };
+  }
+}
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -415,7 +318,7 @@ function getCookie(cname) {
       }
     }
     return "";
-};
+}
 
 function checkCookie() {
     var user=getCookie("session");
@@ -452,131 +355,128 @@ function checkCookie() {
         document.querySelector(".info").classList.add("alert-danger");
         document.querySelector('.info').innerHTML = ('Niepoprawne dane logowania');
     }
-};
+}
 
-  let configSsid
-  function askJsonSsid() {
-      fetch("/json/wifiConfig.json")
-        .then(results => results.json())
-        .then(data => {configSsid = data;
-      updateSsid(configSsid);
-      })
-    };
+let configSsid
+function askJsonSsid() {
+  fetch("/json/wifiConfig.json")
+    .then(results => results.json())
+    .then(data => {configSsid = data;
+    updateSsid(configSsid);
+    })
+}
   
-    function updateSsid(config){
-      showSsid("SSID", '#ssid', config)
-    };
+function updateSsid(config) {
+  showSsid("SSID", '#ssid', config)
+}
   
-    function showSsid(param, id, newData) {
-    document.querySelector(id).innerHTML = newData[param];
-    };
+function showSsid(param, id, newData) {
+  document.querySelector(id).innerHTML = newData[param];
+}
 
-let configIp;
+let configIp
 function askJsonIp() {
-    fetch("/json/serverConfig.json")
-        .then(results => results.json())
-        .then(data => {configIp = data;
-        updateIp(configIp);
-        })
-    };
+  fetch("/json/serverConfig.json")
+    .then(results => results.json())
+    .then(data => {configIp = data;
+    updateIp(configIp);
+  })
+}
   
-function updateIp(config){
+function updateIp(config) {
     showIp("actualWanIP", '#wanip', config)
     showIp("actualLanIP", '#lanip', config)
 };
   
 function showIp(param, id, newData) {
     document.querySelector(id).innerHTML = newData[param];
-};
+}
     
 let configWifi
 function askJsonWifi() {
-    var table= document.createElement('table'),
-    thead = document.createElement('thead'),
-    tbody = document.createElement('tbody'),
-    th,
-    tr,
-    td;
-    th = document.createElement('th'),          
-    th.innerHTML="SSID";
-    table.appendChild(th);
-    th = document.createElement('th'); 
-    th.innerHTML= "Password"
-    table.appendChild(th);
-    th = document.createElement('th'); 
-    th.innerHTML= "Aktywna"
-    table.appendChild(th);
-    th = document.createElement('th'); 
-    th.innerHTML= "Opcje"
-    table.appendChild(th);
-    table.appendChild(thead);            
-    table.appendChild(tbody);
-    table.id="tableWifi";
-    document.getElementById('wifiProfiles').appendChild(table);
-
-        fetch("/json/wifiProfilesList.json")
-        .then(results => results.json())
-        .then(data => {configWifi = data;
-        let profile = configWifi["wifiKnownProfiles"]
-        countRows= profile.length;
-        for (let index = 0; index < profile.length; index++) {
-            const element = profile[index];
-            console.log(element.SSID);
-            console.log(index);
-            tr = document.createElement('tr'),
-            tr.id = "tr"+ index;
-            td= document.createElement('td');
-            td.innerHTML=element.SSID;
-            tr.appendChild(td);
-            td = document.createElement('td');
-            td.innerHTML=element.password;
-            tr.appendChild(td);
-            td = document.createElement('td');
-            tr.appendChild(td);
-            let name = "chceckbox" + index;
-            checkbox = document.createElement("input");
-            checkbox.className ='form-check-input checkboxstyle';
-            checkbox.type = "radio";
-            checkbox.name = "inlineRadioOptions";
-            checkbox.id = "wifiBox" + index;
-            td.appendChild(checkbox);
-            td = document.createElement('td');
-            tr.appendChild(td); 
-            let nameB = "button" + index;
-            button = document.createElement("button");
-            button.className ='btn-danger btn-sm wifiRemove';
-            button.type = "button";
-            button.innerHTML = "Usuń";
-            button.nameB = "buttonGroup";
-            button.id = "wifiRemove" + index;
-            if(element.isSelected){
-                button.disabled = true;
-                button.className ='btn-secondary btn-sm wifiRemove disabled';
-                checkbox.checked = true;
-            }else {
-                button.disabled = false;
-                checkbox.checked = false;
-                button.setAttribute("onclick","deleteProfile(" + index + ");");
-            }
-        td.appendChild(button);
-        tbody.appendChild(tr);
-        }
+  var table= document.createElement('table'),
+  thead = document.createElement('thead'),
+  tbody = document.createElement('tbody'),
+  th,
+  tr,
+  td;
+  th = document.createElement('th'),          
+  th.innerHTML="SSID";
+  table.appendChild(th);
+  th = document.createElement('th'); 
+  th.innerHTML= "Password"
+  table.appendChild(th);
+  th = document.createElement('th'); 
+  th.innerHTML= "Aktywna"
+  table.appendChild(th);
+  th = document.createElement('th'); 
+  th.innerHTML= "Opcje"
+  table.appendChild(th);
+  table.appendChild(thead);            
+  table.appendChild(tbody);
+  table.id="tableWifi";
+  document.getElementById('wifiProfiles').appendChild(table);
+    fetch("/json/wifiProfilesList.json")
+      .then(results => results.json())
+      .then(data => {configWifi = data;
+      let profile = configWifi["wifiKnownProfiles"]
+      countRows= profile.length;
+      for (let index = 0; index < profile.length; index++) {
+      const element = profile[index];
+      tr = document.createElement('tr'),
+      tr.id = "tr"+ index;
+      td= document.createElement('td');
+      td.id = "ssid"+ index;
+      td.innerHTML=element.SSID;
+      tr.appendChild(td);
+      td = document.createElement('td');
+      td.id = "pass"+ index;
+      td.innerHTML=element.password;
+      tr.appendChild(td);
+      td = document.createElement('td');
+      td.id = "active"+ index;
+      tr.appendChild(td);
+      let name = "chceckbox" + index;
+      checkbox = document.createElement("input");
+      checkbox.className ='form-check-input checkboxstyle';
+      checkbox.type = "radio";
+      checkbox.name = "inlineRadioOptions";
+      checkbox.id = "wifiBox" + index;
+      td.appendChild(checkbox);
+      td = document.createElement('td');
+      tr.appendChild(td); 
+      let nameB = "button" + index;
+      button = document.createElement("button");
+      button.className ='btn-danger btn-sm wifiRemove';
+      button.type = "button";
+      button.innerHTML = "Usuń";
+      button.nameB = "buttonGroup";
+      button.id = "wifiRemove" + index;
+      if(element.isSelected){
+        button.disabled = true;
+        button.className ='btn-secondary btn-sm wifiRemove disabled';
+        checkbox.checked = true;
+      }
+      else {
+      button.disabled = false;
+      checkbox.checked = false;
+      button.setAttribute("onclick","deleteProfile(" + index + ");");
+      }
+      td.appendChild(button);
+      tbody.appendChild(tr);
+      }
     })
-};
+}
       
-let countRows;
-function deleteProfile(index){
-
+let countRows
+function deleteProfile(index) {
     document.getElementById("tr"+index).remove();
-    // document.getElementById("tableWifi").deleteRow(index);
-};
+}
 
-function addWifiProfile(){
+function addWifiProfile() {
     if ((document.querySelector('#SSID').value === "") || (document.querySelector('#PASS').value === "")){
         alert("puste pola, nic nie dodam!");
     } 
-    // else if (document.querySelector('#PASS').value === ""){alert("hasło puste?");}
-
     else {
       if (document.getElementById("tableWifi").rows.length<10){
         var table = document.getElementById("tableWifi");
@@ -587,20 +487,19 @@ function addWifiProfile(){
         var cell3 = row.insertCell();
         var cell4 = row.insertCell();
         cell1.innerHTML = document.querySelector('#SSID').value;
+        cell1.id = "ssid" + countRows;
         cell2.innerHTML = document.querySelector('#PASS').value;
+        cell2.id = "pass" + countRows;
         cell3.innerHTML = "<input class='form-check-input checkboxstyle' type='radio' name='inlineRadioOptions' id='wifiBox" + countRows + "'/>";
+        cell3.id = "active" + countRows;
         cell4.innerHTML = "<button class='btn-danger btn-sm wifiRemove' type='button' name='buttonGroup' id='wifiRemove" + countRows + "' onclick='deleteProfile(" + countRows + ");'>Usuń</button>";
-        console.log("obecny " + countRows);
         countRows++;
-    console.log("następny " + countRows)
-    document.querySelector('#SSID').value = ""; 
-    document.querySelector('#PASS').value = ""; 
+        document.querySelector('#SSID').value = ""; 
+        document.querySelector('#PASS').value = ""; 
       }else{
         alert("Maksymalnie mozna zapisać 10 profili");
-
       }
     }
-      
 };
 
 
@@ -611,32 +510,32 @@ function askJsonTime() {
       .then(data => {timeS = data;
     updateTime(timeS);
     })
-};
+}
 
-  function updateTime(timeS){
-    showParam("serverNTP", '#ntp', timeS)  
-    showParam("requestFrequency", '#refNtp', timeS)  
-    switchDst("daySavingTime", '#DST', timeS)
-    switchTZ("timeZone", '#timeZoneSelect', timeS)
-  };
+function updateTime(timeS){
+  showParam("serverNTP", '#ntp', timeS)  
+  showParam("requestFrequency", '#refNtp', timeS)  
+  switchDst("daySavingTime", '#DST', timeS)
+  switchTZ("timeZone", '#timeZoneSelect', timeS)
+}
 
-  function showParam(param, id, newData) {
-  document.querySelector(id).value = newData[param];
-  };
+function showParam(param, id, newData) {
+document.querySelector(id).value = newData[param];
+}
 
-  function switchDst(param, id, newData) {
-    if (newData[param] == 1){
-    document.querySelector(id).checked = true;    
-    }
-    else{
-        document.querySelector(id).checked = false;            
-    }
-  };
+function switchDst(param, id, newData) {
+  if (newData[param] == 1){
+  document.querySelector(id).checked = true;    
+  }
+  else{
+  document.querySelector(id).checked = false;            
+  }
+}
 
-  function switchTZ(param, id, newData) {
-    var utc = newData[param] * 3600;
-    document.querySelector('#timeZoneSelect').value = utc;
-};
+function switchTZ(param, id, newData) {
+  var utc = newData[param] * 3600;
+  document.querySelector('#timeZoneSelect').value = utc;
+}
 
 let geoS
 function askJsonGeo() {
@@ -645,63 +544,58 @@ function askJsonGeo() {
       .then(data => {geoS = data;
     updateGeo(geoS);
     })
-};
+}
 
-function updateGeo(geoS){
-    showParamGeo("currentLocationLatitude", '#inlineFormInputGroupLa', geoS)  
-    showParamGeo("currentLocationLongitude", '#inlineFormInputGroupLo', geoS)  
-    showParamGeo("dusk2DawnHoursStartDelay", '#d2dfH', geoS)  
-    showParamGeo("dusk2DawnHoursStopDelay", '#d2dtH', geoS)  
-    showParamGeo("dusk2DawnMinutesStartDelay", '#d2dfM', geoS)  
-    showParamGeo("dusk2DawnMinutesStopDelay", '#d2dtM', geoS)  
-};
+function updateGeo(geoS) {
+  showParamGeo("currentLocationLatitude", '#inlineFormInputGroupLa', geoS)  
+  showParamGeo("currentLocationLongitude", '#inlineFormInputGroupLo', geoS)  
+  showParamGeo("dusk2DawnHoursStartDelay", '#d2dfH', geoS)  
+  showParamGeo("dusk2DawnHoursStopDelay", '#d2dtH', geoS)  
+  showParamGeo("dusk2DawnMinutesStartDelay", '#d2dfM', geoS)  
+  showParamGeo("dusk2DawnMinutesStopDelay", '#d2dtM', geoS)  
+}
 
 function showParamGeo(param, id, newData) {
   document.querySelector(id).value = newData[param];
-};
+}
 
-function saveTimeSettings(){
+function saveTimeSettings() {
     alert('zapis ustawień czasu');
-};
+}
 
-function saveD2dSettings(){
+function saveD2dSettings() {
     alert('zapis ustawień D2D');
-};
+}
 
 let slave
 function askJsonSlave() {
-    fetch("/json/slaveList.json")
-      .then(results => results.json())
-      .then(data => {
-            slave = data;
-            isSlave(slave);
-
-            if (slave.isSlave == false){
-                var l = 0;
-                slave.slaveList.forEach(element => {
-                  // console.log(element.addressIP);
-                  $('#addS').trigger('click');
-                  document.querySelector("#f" + l).value = element.addressIP;
-                  l++;
-              })
-            }
-            else{
-              // 
-              var l = 0;
-                slave.slaveList.forEach(element => {
-                  // console.log(element.addressIP);
-                  $('#addS').trigger('click');
-                  document.querySelector("#f" + l).value = element.addressIP;
-                  l++;
-              })
-              // 
-            }    
-        })  
-};
+  fetch("/json/slaveList.json")
+    .then(results => results.json())
+    .then(data => {
+      slave = data;
+      isSlave(slave);
+      if (slave.isSlave == false){
+        var l = 0;
+        slave.slaveList.forEach(element => {
+          $('#addS').trigger('click');
+          document.querySelector("#f" + l).value = element.addressIP;
+          l++;
+        })
+      }
+      else{
+        var l = 0;
+        slave.slaveList.forEach(element => {
+          $('#addS').trigger('click');
+          document.querySelector("#f" + l).value = element.addressIP;
+          l++;
+        })
+      }    
+    })  
+}
 
 function isSlave(slave){
-    switchSlave("isSlave", '#smType', slave)
-};
+  switchSlave("isSlave", '#smType', slave)
+}
 
 function switchSlave(param, id, newData) {
     if (newData[param] == false){
@@ -712,7 +606,7 @@ function switchSlave(param, id, newData) {
     document.querySelector(id).checked = false; 
     boxChecksmType();   
     }
-};
+}
 
 let aWifi
 function askJsonAvailableWifi() {
@@ -743,7 +637,7 @@ function askJsonAvailableWifi() {
         aWifi.forEach(element =>{
             i++
             tr = document.createElement('tr'),
-            tr.id = "tr"+ i;
+            tr.id = "avWifi"+ i;
             td= document.createElement('td');
             td.innerHTML=element.ssid;
             tr.appendChild(td);
@@ -761,7 +655,7 @@ function askJsonAvailableWifi() {
             tbody.appendChild(tr);
         })
       })
-};
+}
 
 function removeTable(){
     document.querySelector("#availableWifiTable").remove();
@@ -769,11 +663,11 @@ function removeTable(){
     document.getElementById('searchWifi').classList.add("btn-success");
     document.getElementById('searchWifi').innerHTML = "Szukaj";
     document.getElementById('searchWifi').setAttribute("onclick", "askJsonAvailableWifi();");
-};
+}
 
 function addProfile(profile){
     document.querySelector("#SSID").value = (profile);
-};
+}
 
 let harm;
 function askJsonWeekHarm() {
@@ -804,7 +698,7 @@ function askJsonWeekHarm() {
             console.log();
         })
     })
-};
+}
 
 function ValidateIPaddress(ipaddress, id) {  
   if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress)) {  
@@ -818,39 +712,145 @@ function ValidateIPaddress(ipaddress, id) {
     return false;
 } 
 
-
-// finally sending first JSON back... at least i'm trying...
-
-
-
 function sendJsonSm(){
   if (document.querySelector("#smType").checked == true){
-    // MASTER
     let isSlave = false;
     let count = $("div[id^=remSla]").length
           var slaveListJson = {"isSlave": isSlave,
           "slaveList": []}
     for(var i = 0; i < count; i++) {
       addressIp ={addressIP: document.querySelector("#f" + i).value};
-      // console.log(addressIp);
       slaveListJson.slaveList.push(addressIp);  
     }  
     console.log("Tryb master ", JSON.stringify(slaveListJson));
     console.log("Tryb master ", slaveListJson);
   }
   else{
-    // SLAVE
     let isSlave = true;
     let count = $("div[id^=remSla]").length
           var slaveListJson = {"isSlave": isSlave,
           "slaveList": []}
     for(var i = 0; i < count; i++) {
       addressIp ={addressIP: document.querySelector("#f" + i).value};
-      // console.log(addressIp);
       slaveListJson.slaveList.push(addressIp);  
     }  
     console.log("Tryb slave ", JSON.stringify(slaveListJson));
     console.log("Tryb slave ", slaveListJson);
   }
-
 }
+
+function sendJsonTime(){
+  let tz = document.querySelector("#timeZoneSelect").value;
+  let ntpServer = document.querySelector("#ntp").value;
+  let ntpRefresh = document.querySelector("#refNtp").value;
+  if (document.querySelector("#DST").checked == true){
+  let dst = 1;
+    var ntpCfg = {
+      "daySavingTime": dst,
+      "timeZone": tz / 3600,
+      "serverNTP": ntpServer,
+      "requestFrequency": parseInt(ntpRefresh, 10)
+    }
+    console.log(JSON.stringify(ntpCfg));
+  }
+  else{
+  let dst = 0;
+  var ntpCfg = {
+    "daySavingTime": dst,
+    "timeZone": tz / 3600,
+    "serverNTP": ntpServer,
+    "requestFrequency": parseInt(ntpRefresh, 10)
+  }
+  console.log(JSON.stringify(ntpCfg));
+  }
+}
+
+function sendJsonD2d(){
+  let lo = document.querySelector("#inlineFormInputGroupLo").value;
+  let la = document.querySelector("#inlineFormInputGroupLa").value;
+
+  let fH = document.querySelector("#d2dfH").value;
+  let fM = document.querySelector("#d2dfM").value;
+  let tH = document.querySelector("#d2dtH").value;
+  let tM = document.querySelector("#d2dtM").value;
+
+    var d2dCfg = {
+      "currentLocationLongitude": parseInt(lo, 10),
+      "currentLocationLatitude": parseInt(la, 10),
+      "dusk2DawnHoursStartDelay": parseInt(fH, 10),
+      "dusk2DawnHoursStopDelay": parseInt(fM, 10),
+      "dusk2DawnMinutesStartDelay": parseInt(tH, 10),
+      "dusk2DawnMinutesStopDelay": parseInt(tM, 10)
+    }
+    console.log(JSON.stringify(d2dCfg));
+}
+
+function sendJsonWifiProfiles(){
+    let count = $("tr[id^=tr]").length
+    console.log(count);
+    var wifiProfilesList = {"wifiKnownProfiles": []}
+    for(var i = 0; i < count; i++) {
+      let knownProfile={};
+      knownProfile.SSID = document.querySelector("#ssid" + i).innerHTML;
+      knownProfile.password = document.querySelector("#pass" + i).innerHTML;
+      if (document.querySelector("#wifiBox" + i).checked == true){
+        knownProfile.isSelected = true
+      }
+      else {
+        knownProfile.isSelected = false
+      }
+      wifiProfilesList.wifiKnownProfiles.push(knownProfile);  
+    }  
+    console.log(JSON.stringify(wifiProfilesList));
+    document.querySelector("#tableWifi").remove();
+}
+
+let dayOfWeek = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat" ]
+function saveHarm() {
+  var weekAutomation = {"weekDayAutomation": []}
+  for (let i = 0; i < dayOfWeek.length; i++){
+  let day = {};
+  let fromH="#fromH-"+dayOfWeek[i];
+  let fromM="#fromM-"+dayOfWeek[i];
+  let toH="#toH-"+dayOfWeek[i];
+  let toM="#toM-"+dayOfWeek[i];
+  let optionTypeHarm = "#optionTypeHarm"+dayOfWeek[i];
+  day.id = i;
+  if (document.querySelector(optionTypeHarm).checked == true) {
+    day.isActive = true
+  }
+  else {
+    day.isActive = false
+  }
+  day.startTimeHours = document.querySelector(fromH).value;
+  day.startTimeMinutes = document.querySelector(fromM).value;
+  day.stopTimeHours = document.querySelector(toH).value;
+  day.stopTimeMinutes = document.querySelector(toM).value;
+  weekAutomation.weekDayAutomation.push(day);
+  }
+  console.log(JSON.stringify(weekAutomation));
+};
+
+const formData = new FormData();
+formData.append("daviceName", "nameVal");
+function saveWork() {
+  var cfg = {};
+  cfg.deviceName = "Light Automation - Master"
+  if ($('#typeOf').prop('checked')){
+    formData.append("isLightAutomationEnabled", true);
+    cfg.isLightAutomationEnabled = true;
+  } 
+  else{
+    formData.append("isLightAutomationEnabled", false);
+    cfg.isLightAutomationEnabled = false;
+  };
+  if ($('#harmOn').prop('checked')){
+    formData.append("isDusk2DawnEnabled", true);
+    cfg.isDusk2DawnEnabled = true;
+  } else{
+    formData.append("isDusk2DawnEnabled", false);
+    cfg.isDusk2DawnEnabled = false;
+  };
+  console.log(JSON.stringify(cfg));
+  askJson();
+};
