@@ -174,7 +174,7 @@ function readOptionTimeZone(id) {
     r = val * 3600;
     $(id).append($("<option></option>").val(r).html(p));
   });
-};
+}
 
 let isShowed
 function typeCheck(classP, inputId, showDiv) {
@@ -386,7 +386,7 @@ function askJsonIp() {
 function updateIp(config) {
     showIp("actualWanIP", '#wanip', config)
     showIp("actualLanIP", '#lanip', config)
-};
+}
   
 function showIp(param, id, newData) {
     document.querySelector(id).innerHTML = newData[param];
@@ -500,8 +500,7 @@ function addWifiProfile() {
         alert("Maksymalnie mozna zapisać 10 profili");
       }
     }
-};
-
+}
 
 let timeS
 function askJsonTime() {
@@ -669,7 +668,7 @@ function addProfile(profile){
     document.querySelector("#SSID").value = (profile);
 }
 
-let harm;
+let harm
 function askJsonWeekHarm() {
     fetch("/json/weekDayAutomation.json")
       .then(results => results.json())
@@ -829,7 +828,7 @@ function saveHarm() {
   weekAutomation.weekDayAutomation.push(day);
   }
   console.log(JSON.stringify(weekAutomation));
-};
+}
 
 const formData = new FormData();
 formData.append("daviceName", "nameVal");
@@ -853,4 +852,58 @@ function saveWork() {
   };
   console.log(JSON.stringify(cfg));
   askJson();
+}
+
+// 
+
+function jsonpostRead(index) {
+  fetch("/", jsonReadPost(configList[index]))
+      .then(res => res.json())
+      .then(data => {
+          console.log(data);
+      }).catch((error) => {
+          console.error('Error:', error);
+      });
+}
+let testujemyFunkcje = jsonPost();
+console.log(testujemyFunkcje);
+
+function jsonPost() {
+  fetch("/", jsonReadPost("/json/cfg"))
+      .then(res => res.json())
+      .then(data => {
+          console.log(data);
+          return data;
+
+      }).catch((error) => {
+          console.error('Error:', error);
+      });
+    }
+
+let configList = [
+  "availableWifi",
+  "cfg",
+  "deviceConfig", 
+  "dusk2DawnConfig", 
+  "ipApi", 
+  "ntpConfig", 
+  "pinConfig", 
+  "serverConfig", 
+  "slaveList", 
+  "usersList", 
+  "weatherApiConfig", 
+  "weatherApiRead", 
+  "weekDayAutomation",
+  "wifiConfig", 
+  "wifiProfilesList"
+];
+
+function jsonReadPost(config) {
+  let param = {        headers: {
+          "content-type": "application/json",
+          "jsonRead": config
+      },
+      method: "POST"
+  }
+  return param;
 };
