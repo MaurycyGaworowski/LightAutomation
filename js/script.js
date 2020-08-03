@@ -1,16 +1,16 @@
 const configList = [
   "availableWifi", //0
   "cfg", // 1
-  "deviceConfig", // 2
+  "deviceConfig", // 2 !
   "dusk2DawnConfig", // 3
-  "ipApi",  //4
-  "ntpConfig", // 5
-  "pinConfig", // 6
-  "serverConfig", // 7
+  "ipApi",  //4 !
+  "ntpConfig", // 5 
+  "pinConfig", // 6 !
+  "serverConfig", // 7 !
   "slaveList", // 8
-  "usersList", // 9 
-  "weatherApiConfig", // 10 
-  "weatherApiRead", // 11
+  "usersList", // 9 !
+  "weatherApiConfig", // 10 !
+  "weatherApiRead", // 11 !
   "weekDayAutomation", // 12
   "wifiConfig",  // 13
   "wifiProfilesList" // 14
@@ -281,7 +281,8 @@ function fMode(selector, object){
 
 let config
 function askJson() {
-    fetch("/json/cfg.json")
+    // fetch("/json/cfg.json")
+    jsonpostRead(1)
       .then(results => results.json())
       .then(data => {config = data;
     updateAll(config);
@@ -376,7 +377,8 @@ function checkCookie() {
 
 let configSsid
 function askJsonSsid() {
-  fetch("/json/wifiConfig.json")
+  // fetch("/json/wifiConfig.json")
+  jsonpostRead(13)
     .then(results => results.json())
     .then(data => {configSsid = data;
     updateSsid(configSsid);
@@ -393,7 +395,8 @@ function showSsid(param, id, newData) {
 
 let configIp
 function askJsonIp() {
-  fetch("/json/serverConfig.json")
+  // fetch("/json/serverConfig.json")
+  jsonpostRead(7)
     .then(results => results.json())
     .then(data => {configIp = data;
     updateIp(configIp);
@@ -433,7 +436,7 @@ function askJsonWifi() {
   table.appendChild(tbody);
   table.id="tableWifi";
   document.getElementById('wifiProfiles').appendChild(table);
-    //fetch("/json/wifiProfilesList.json")
+    //fetch("/json/wifiProfilesList.json")     jsonpostRead()  
     jsonpostRead(14)  
     .then(results => results.json())
       .then(data => {configWifi = data;
@@ -522,7 +525,8 @@ function addWifiProfile() {
 
 let timeS
 function askJsonTime() {
-    fetch("/json/ntpConfig.json")
+    // fetch("/json/ntpConfig.json")
+    jsonpostRead(5)
       .then(results => results.json())
       .then(data => {timeS = data;
     updateTime(timeS);
@@ -556,7 +560,8 @@ function switchTZ(param, id, newData) {
 
 let geoS
 function askJsonGeo() {
-    fetch("/json/dusk2DawnConfig.json")
+    // fetch("/json/dusk2DawnConfig.json")
+    jsonpostRead(3)
       .then(results => results.json())
       .then(data => {geoS = data;
     updateGeo(geoS);
@@ -586,7 +591,8 @@ function saveD2dSettings() {
 
 let slave
 function askJsonSlave() {
-  fetch("/json/slaveList.json")
+  // fetch("/json/slaveList.json")
+  jsonpostRead(8)
     .then(results => results.json())
     .then(data => {
       slave = data;
@@ -647,7 +653,8 @@ function askJsonAvailableWifi() {
     table.id="availableWifiTable";
     document.getElementById('listWifi').appendChild(table);
     document.getElementById('searchWifi').setAttribute("onclick", "removeTable();");
-    fetch("/json/availableWifi.json")
+    // fetch("/json/availableWifi.json")
+    jsonpostRead(0)
       .then(results => results.json())
       .then(data => {aWifi = data;
         var i = 0
@@ -688,7 +695,8 @@ function addProfile(profile){
 
 let harm
 function askJsonWeekHarm() {
-    fetch("/json/weekDayAutomation.json")
+    // fetch("/json/weekDayAutomation.json")
+    jsonpostRead(12)
       .then(results => results.json())
       .then(data => {harm = data.weekDayAutomation;
 
@@ -871,21 +879,6 @@ function saveWork() {
   console.log(JSON.stringify(cfg));
   askJson();
 }
-
-// 
-
-// function jsonpostRead(index) {
-//   fetch("/", jsonReadPost(configList[index]))
-//       .then(res => res.json())
-//       .then(data => {
-//           console.log(data);
-//       }).catch((error) => {
-//           console.error('Error:', error);
-//       });
-// }
-
-//jsonpostRead().then(data => console.log(data));
-let jsonCfg = jsonpostRead();
 
 function jsonpostRead(index) {
   return fetch("/", jsonReadPost(configList[index]))
