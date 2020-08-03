@@ -1,3 +1,20 @@
+const configList = [
+  "availableWifi", //0
+  "cfg", // 1
+  "deviceConfig", // 2
+  "dusk2DawnConfig", // 3
+  "ipApi",  //4
+  "ntpConfig", // 5
+  "pinConfig", // 6
+  "serverConfig", // 7
+  "slaveList", // 8
+  "usersList", // 9 
+  "weatherApiConfig", // 10 
+  "weatherApiRead", // 11
+  "weekDayAutomation", // 12
+  "wifiConfig",  // 13
+  "wifiProfilesList" // 14
+];
 function startPage() {
   $('.user').hide();
   $('.admin').hide();
@@ -416,8 +433,9 @@ function askJsonWifi() {
   table.appendChild(tbody);
   table.id="tableWifi";
   document.getElementById('wifiProfiles').appendChild(table);
-    fetch("/json/wifiProfilesList.json")
-      .then(results => results.json())
+    //fetch("/json/wifiProfilesList.json")
+    jsonpostRead(14)  
+    .then(results => results.json())
       .then(data => {configWifi = data;
       let profile = configWifi["wifiKnownProfiles"]
       countRows= profile.length;
@@ -856,47 +874,30 @@ function saveWork() {
 
 // 
 
+// function jsonpostRead(index) {
+//   fetch("/", jsonReadPost(configList[index]))
+//       .then(res => res.json())
+//       .then(data => {
+//           console.log(data);
+//       }).catch((error) => {
+//           console.error('Error:', error);
+//       });
+// }
+
+//jsonpostRead().then(data => console.log(data));
+let jsonCfg = jsonpostRead();
+
 function jsonpostRead(index) {
-  fetch("/", jsonReadPost(configList[index]))
+  return fetch("/", jsonReadPost(configList[index]))
       .then(res => res.json())
       .then(data => {
-          console.log(data);
-      }).catch((error) => {
+          // console.log(data);
+          return data;        }).catch((error) => {
           console.error('Error:', error);
       });
 }
-let testujemyFunkcje = jsonPost();
-console.log(testujemyFunkcje);
 
-function jsonPost() {
-  fetch("/", jsonReadPost("/json/cfg"))
-      .then(res => res.json())
-      .then(data => {
-          console.log(data);
-          return data;
 
-      }).catch((error) => {
-          console.error('Error:', error);
-      });
-    }
-
-let configList = [
-  "availableWifi",
-  "cfg",
-  "deviceConfig", 
-  "dusk2DawnConfig", 
-  "ipApi", 
-  "ntpConfig", 
-  "pinConfig", 
-  "serverConfig", 
-  "slaveList", 
-  "usersList", 
-  "weatherApiConfig", 
-  "weatherApiRead", 
-  "weekDayAutomation",
-  "wifiConfig", 
-  "wifiProfilesList"
-];
 
 function jsonReadPost(config) {
   let param = {        headers: {
