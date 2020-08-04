@@ -75,6 +75,26 @@ $(document).ready(function () {
   });
 })
 
+function alwaysOnCheck() {
+  var checkbox = document.querySelector("#alwaysOn");
+  checkbox.addEventListener("change", function () {
+    if (this.checked) {
+      console.log("ON event")
+    } else {
+      console.log("OFF event")
+    }
+  });
+}
+
+function boxCheckAlwaysOn() {
+  var checkbox = document.querySelector("#alwaysOn");
+  if (checkbox.checked == true) {
+    console.log("ON")
+  } else {
+    console.log("OFF")
+  }
+}
+
 function smTypeCheck() {
   var checkbox = document.querySelector("input[name=smType]");
   checkbox.addEventListener("change", function () {
@@ -293,6 +313,7 @@ function updateAll(config){
     showId("deviceName", '#deviceName', config)  
     switchP("isLightAutomationEnabled", '#typeOf', config)
     switchP("isDusk2DawnEnabled", '#harmOn', config)
+    switchP("alwaysOn", "#alwaysOn", config)
 }
 
 function update(param, id, newData) {
@@ -875,6 +896,13 @@ function saveWork() {
   } else{
     formData.append("isDusk2DawnEnabled", false);
     cfg.isDusk2DawnEnabled = false;
+  };
+  if ($('#alwaysOn').prop('checked')){
+    formData.append("alwaysOn", true);
+    cfg.alwaysOn = true;
+  } else{
+    formData.append("alwaysOn", false);
+    cfg.alwaysOn = false;
   };
   console.log(JSON.stringify(cfg));
   askJson();
