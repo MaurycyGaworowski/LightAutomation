@@ -2,5 +2,5 @@
     "deviceName": "Light Automation - Master",
     "isLightAutomationEnabled": false,
     "isDusk2DawnEnabled": true,
-    "alwaysOn": true
+    "alwaysOn": false
 }

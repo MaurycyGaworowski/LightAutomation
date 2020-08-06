@@ -37,6 +37,10 @@ setCookie('session', '', '1');
   document.querySelector(".info").classList.remove("d-none", "alert-danger");
   document.querySelector(".info").classList.add("alert-success");
   document.querySelector(".info").innerHTML = "Wylogowano z aplikacji</br>" + today;
+  document.querySelector("#editDeviceName").classList.add("d-none");
+  document.querySelector("#newDeviceId").classList.add("d-none");
+
+
   location.reload();
 }
 
@@ -79,9 +83,11 @@ function alwaysOnCheck() {
   var checkbox = document.querySelector("#alwaysOn");
   checkbox.addEventListener("change", function () {
     if (this.checked) {
-      console.log("ON event")
+      document.querySelector("#alwaysOnBox").classList.add("d-none");
+      document.querySelector("#alwaysOnBox2").classList.add("d-none");
     } else {
-      console.log("OFF event")
+      document.querySelector("#alwaysOnBox").classList.remove("d-none");
+      document.querySelector("#alwaysOnBox2").classList.remove("d-none");
     }
   });
 }
@@ -89,9 +95,11 @@ function alwaysOnCheck() {
 function boxCheckAlwaysOn() {
   var checkbox = document.querySelector("#alwaysOn");
   if (checkbox.checked == true) {
-    console.log("ON")
+    document.querySelector("#alwaysOnBox").classList.add("d-none");
+    document.querySelector("#alwaysOnBox2").classList.add("d-none");
   } else {
-    console.log("OFF")
+    document.querySelector("#alwaysOnBox").classList.remove("d-none");
+    document.querySelector("#alwaysOnBox2").classList.remove("d-none");
   }
 }
 
@@ -261,6 +269,9 @@ function checkCred() {
         $('.admin').show(300);
         $('.logout').show(300);
         $('.info').hide(300);
+        document.querySelector("#editDeviceName").classList.remove("d-none");
+        askJsonD2d();
+        askJsonAdvancedSettings()
     } 
     else {
       $('.info').show(300);
@@ -301,8 +312,8 @@ function fMode(selector, object){
 
 let config
 function askJson() {
-    // fetch("/json/cfg.json")
-    jsonpostRead(1)
+    fetch("/json/cfg.json")
+    // jsonpostRead(1)
       .then(results => results.json())
       .then(data => {config = data;
     updateAll(config);
@@ -314,6 +325,7 @@ function updateAll(config){
     switchP("isLightAutomationEnabled", '#typeOf', config)
     switchP("isDusk2DawnEnabled", '#harmOn', config)
     switchP("alwaysOn", "#alwaysOn", config)
+    showEditId("deviceName", '#newDeviceId', config)
 }
 
 function update(param, id, newData) {
@@ -323,6 +335,10 @@ function update(param, id, newData) {
 function showId(param, id, newData) {
 document.querySelector(id).innerHTML = newData[param];
 }
+
+function showEditId(param, id, newData) {
+  document.querySelector(id).value = newData[param];
+  }
 
 function switchP(param, id, newData) {
   if (newData[param]){
@@ -384,6 +400,9 @@ function checkCookie() {
             $('.admin').show(300);
             $('.logout').show(300);
             $('.info').hide(300);
+            document.querySelector("#editDeviceName").classList.remove("d-none");
+            askJsonD2d();
+            askJsonAdvancedSettings()
         } 
         else {
           $('.info').show(300);
@@ -575,7 +594,8 @@ function switchDst(param, id, newData) {
 }
 
 function switchTZ(param, id, newData) {
-  var utc = newData[param] * 3600;
+  var utc = newData[param];
+  //  * 3600;
   document.querySelector('#timeZoneSelect').value = utc;
 }
 
@@ -821,8 +841,8 @@ function sendJsonD2d(){
   let tM = document.querySelector("#d2dtM").value;
 
     var d2dCfg = {
-      "currentLocationLongitude": parseInt(lo, 10),
-      "currentLocationLatitude": parseInt(la, 10),
+      "currentLocationLongitude": lo,
+      "currentLocationLatitude": la,
       "dusk2DawnHoursStartDelay": parseInt(fH, 10),
       "dusk2DawnHoursStopDelay": parseInt(fM, 10),
       "dusk2DawnMinutesStartDelay": parseInt(tH, 10),
@@ -881,7 +901,7 @@ const formData = new FormData();
 formData.append("daviceName", "nameVal");
 function saveWork() {
   var cfg = {};
-  cfg.deviceName = "Light Automation - Master"
+  cfg.deviceName = document.querySelector("#newDeviceId").value
   if ($('#typeOf').prop('checked')){
     formData.append("isLightAutomationEnabled", true);
     cfg.isLightAutomationEnabled = true;
@@ -918,8 +938,6 @@ function jsonpostRead(index) {
       });
 }
 
-
-
 function jsonReadPost(config) {
   let param = {        headers: {
           "content-type": "application/json",
@@ -929,3 +947,123 @@ function jsonReadPost(config) {
   }
   return param;
 };
+
+function jsonDate() {
+  fetch("/json/time.json")
+  // jsonpostRead(12?)
+      .then(response => response.json())
+      .then(response => {  
+        console.log(response)          
+        console.log(response.Day + "." + response.Month + "." + response.Year)        
+        console.log(response.Hour + ":" + response.Minute + "." + response.Seconds)  
+        document.querySelector("#timeHour").innerHTML = response.Hour + ":" + response.Minute + "." + response.Seconds;      
+        document.querySelector("#timeDate").innerHTML = response.Day + "." + response.Month + "." + response.Year;      
+      })
+}
+
+function askJsonD2d() {
+  fetch("/json/d2dTime.json")
+  // jsonpostRead(12?)
+      .then(response => response.json())
+      .then(response => {  
+        document.querySelector("#sunUp").innerHTML = response.Sunrise;      
+        document.querySelector("#sunDown").innerHTML = response.Sunset;      
+      })
+}
+
+
+setInterval(function(){ 
+  jsonDate();    
+}, 60000);
+
+function SelectAll(id){
+    document.getElementById(id).select();
+}
+
+function enterEvent(id){
+  document.querySelector(id).addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("login").click();
+        }
+    });
+}
+
+function editId(){
+document.querySelector("#newDeviceId").classList.remove("d-none");
+document.querySelector("#editId").innerHTML = ("Ukryj");
+document.querySelector("#editId").setAttribute("onclick", "javascript: hideId()");
+document.querySelector("#deviceName").innerHTML = ("Podaj nową nazwę...");
+}
+
+function hideId(){
+  document.querySelector("#editId").innerHTML = ("Edytuj");
+  document.querySelector("#editId").setAttribute("onclick", "javascript: editId()");
+  document.querySelector("#newDeviceId").classList.add("d-none");
+  document.querySelector("#deviceName").innerHTML = document.querySelector("#newDeviceId").value
+}
+
+function askJsonAdvancedSettings() {
+  fetch("/json/deviceConfig.json")
+  // jsonpostRead(12?)
+      .then(response => response.json())
+      .then(response => {  
+        if (response.isOtaEnabled == true){
+          document.querySelector("#isOtaEnabled").checked = true;
+        } else{
+          document.querySelector("#isOtaEnabled").checked = false;
+        };
+        if (response.isAutoResetEnabled == true){
+          document.querySelector("#isAutoResetEnabled").checked = true;
+        } else{
+          document.querySelector("#isAutoResetEnabled").checked = false;
+        };
+        if (response.rellayNormallyClosed == true){
+          document.querySelector("#rellayNormallyClosed").checked = true;
+        } else{
+          document.querySelector("#rellayNormallyClosed").checked = false;
+        };
+        document.querySelector("#apActiveTime").value = response.apActiveTime;
+        document.querySelector("#otaActiveTime").value = response.otaActiveTime;       
+        document.querySelector("#resetTimeHours").value = response.resetTimeHours;       
+        document.querySelector("#resetTimeMinutes").value = response.resetTimeMinutes;       
+        document.querySelector("#deepSleepMode").value = response.deepSleepMode;       
+        document.querySelector("#deepSleepInterval").value = response.deepSleepInterval;       
+
+      })
+}
+
+const formDataAS = new FormData();
+function sendJsonAdvancedSettings(){
+  var acfg = {};
+  if ($('#isOtaEnabled').prop('checked')){
+    formDataAS.append("isOtaEnabled", true);
+    acfg.isOtaEnabled = true;
+  } 
+  else{
+    formDataAS.append("isOtaEnabled", false);
+    acfg.isOtaEnabled = false;
+  };
+  if ($('#isAutoResetEnabled').prop('checked')){
+    formDataAS.append("isAutoResetEnabled", true);
+    acfg.isAutoResetEnabled = true;
+  } else{
+    formDataAS.append("isAutoResetEnabled", false);
+    acfg.isAutoResetEnabled = false;
+  };
+  if ($('#rellayNormallyClosed').prop('checked')){
+    formDataAS.append("rellayNormallyClosed", true);
+    acfg.rellayNormallyClosed = true;
+  } else{
+    formDataAS.append("rellayNormallyClosed", false);
+    acfg.rellayNormallyClosed = false;
+  };
+  acfg.apActiveTime = document.querySelector("#apActiveTime").value;
+  acfg.otaActiveTime = document.querySelector("#otaActiveTime").value;
+  acfg.resetTimeHours = document.querySelector("#resetTimeHours").value;
+  acfg.resetTimeMinutes = document.querySelector("#resetTimeMinutes").value;
+  acfg.deepSleepMode = document.querySelector("#deepSleepMode").value;
+  acfg.deepSleepInterval = document.querySelector("#deepSleepInterval").value;
+
+  console.log(JSON.stringify(acfg));
+} 

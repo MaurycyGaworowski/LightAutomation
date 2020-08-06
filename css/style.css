@@ -121,3 +121,24 @@ padding: .1rem .1rem;
 .add_button {
     margin-right: 15px;
 }    
+
+.lowMargin {
+    margin-top: 2px;
+}
+
+.sameSize{
+    width: 73px;
+}
+
+.centerImg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottomPage {
+    margin-top: 1rem!important;
+}
+
+
+/*  */

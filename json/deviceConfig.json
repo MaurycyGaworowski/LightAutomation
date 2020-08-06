@@ -1,6 +1,5 @@
 {
-    "isSlave": false,
-    "isOtaEnabled": false,
+    "isOtaEnabled": true,
     "isAutoResetEnabled": false,
     "rellayNormallyClosed": false,
     "apActiveTime": 3600,

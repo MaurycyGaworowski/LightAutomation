@@ -6,6 +6,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1,
             shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="http://seleco.pl/serwis/img/Box_logo.png">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet"
@@ -35,17 +36,23 @@
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="/css/style.css">
         <script src="/js/md5.js"></script>
+        <script>
+          
+        </script>
 
         <!-- login -->
         <section class="login w3-animate-left">
             <div class="container col-xl-2 col-lg-4 col-md-6 col-sm-8 login">
                 <div>
-                    <img class="mb-4 center" src="/img/logo.png" alt="" width="70" height="70">
+                    <img class="mb-4 centerImg" src="http://prouve.com/img/logo.png" alt="" width="210" height="">
                     <h1 class="h6 mb-3 font-weight-normal centerText">Logowanie @ LightAutomation</h1>
-                    <input id="inputLogin" class="form-control login centerText" placeholder="login" required autofocus>
-                    <input id="inputPassword" class="form-control login centerText" placeholder="password" type="password" required>
-                    <button class="btn btn-md btn-primary btn-block login" type="submit" onclick="checkCred();">Zaloguj</button>
-                    <p class="mt-5 mb-3 text-muted centerText">&copy; 2020 - SELECO.pl</p>
+                    <input id="inputLogin" class="form-control login centerText" placeholder="login" required autofocus onclick="SelectAll('inputLogin');">
+                    <input id="inputPassword" class="form-control login centerText" placeholder="password" type="password" required onclick="SelectAll('inputPassword');">
+                    <button id="login" class="btn btn-md btn-primary btn-block login" type="submit" onclick="checkCred();">Zaloguj</button>
+                    <div class="fixed-bottom">
+                        <a href="http://seleco.pl"><img class="mb-12 centerImg" src="http://seleco.pl/serwis/img/Box_logo.png" alt="" width="60" height=""></a>
+                        <p class="mt-5 mb-3 text-muted centerText bottomPage">&copy; 2020 - SELECO.pl</p>
+                    </div>
                 </div>
                 <div id="messageBox" class="alert info centerText d-none" role="alert">Nieprawidłowe dane logowania!</div>
             </div>
@@ -54,18 +61,35 @@
         <!-- user -->
         <section class="user">
             <div class="container shadow lower">
-                <h2 id="deviceName" class=""></h2>
-                <h3>Tryb pracy</h3>
+                <h2 id="deviceName" class="">Odczyt ID z pliku konfiguracji</h2>
+                <div id="editDeviceName" class="row d-none">
+                    <div class="col-3">
+                        <button id="editId" class="btn btn-danger sameSize" onclick="editId();">Edytuj</button>
+                    </div>
+                    <div class="col">
+                        <input id="newDeviceId" class="form-control centerText d-none" maxlength="20" onclick="SelectAll('newDeviceId');">
+                    </div>
+                </div>
+                <div class="row">
+                    <h3 class="col-6">Tryb pracy</h3>
+                    <h3 id="timeHour" class="col-6 text-right">11:11</h3>
+                </div>
+                <div class="row">
+                    <h3 class="col-6 lowMargin"></h3>
+                    <h4 id="timeDate" class="col-6 text-right lowMargin">04.02.1985</h4>
+                </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="alwaysOn">
                     <label class="form-check-label" for="alwaysOn">Światło zawsze włączone</label>
                 </div>
+                <div id="alwaysOnBox">
                 <input class="mg" id="typeOf" data-size="normal" type="checkbox"
                     data-toggle="toggle" data-width="100%" data-onstyle="success
                     typeOn" data-offstyle="danger typeOff" data-off="Sterowanie
                     za pomocą czujnika ruch" data-on="Sterowanie za pomocą
                     harmonogramu">
-                <div class="settings">
+                </div>    
+                <div id="alwaysOnBox2" class="settings">
                     <h3>Harmonogram</h3>
                     <input id="harmOn" data-size="normal" type="checkbox"
                         data-toggle="toggle" data-width="100%"
@@ -406,7 +430,7 @@
                             <input id="ntp" type="text" class="form-control" placeholder="serwer NTP">
                         </div>
                         <div class="col-3">
-                            <input id="refNtp" type="text" class="form-control" placeholder="Częstotliwość sprawdzania (ms)">
+                            <input id="refNtp" type="text" class="form-control" placeholder="Częstotliwość sprawdzania">
                         </div>
                         <div class="col-1">
                             <input class="form-check-input" type="checkbox" id="DST" value="DST">
@@ -464,6 +488,20 @@
                             <input id="d2dtM" type="text" class="form-control" placeholder="">
                         </div>
                     </div>
+                    <!--  -->
+                    <div class="row r1 align-items-center margin-top bg-light">    
+                        <div class="col text-center">Wg wybranej strefy czasowej...</div>    
+                        
+                    </div>
+                    <div class="row r1 align-items-center bg-light">    
+                        <div class="col text-center">wschód słońca:</div>
+                        <div class="col text-center">zachód słońca:</div>
+                    </div>
+                    <div class="row r1 align-items-center bg-light">    
+                        <div id="sunUp" class="col text-center font-weight-bold">5:55</div>
+                        <div id="sunDown" class="col text-center font-weight-bold">20:50</div>
+                    </div>
+                    <!--  -->
                     <div class="row margin-top justify-content-center">
                         <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="sendJsonD2d();">Zapisz ustawienia</button>
                     </div>
@@ -479,7 +517,9 @@
                         <div id="ssid" class="col-4 text-wrap">Błąd konfiguracji</div>
                     </div>
                     <div class="row margin-top justify-content-center">
-                        <div class="col-4"><button type="button" class="btn btn-info btn-md btn-block" data-toggle="modal" data-target="#wirelessModal" onclick="askJsonWifi();">Ustawienia sieci</button></div>
+                        <!-- <div class=""> -->
+                            <button type="button" class="btn btn-info btn-md btn-block col-4" data-toggle="modal" data-target="#wirelessModal" onclick="askJsonWifi();">Ustawienia sieci</button>
+                        <!-- </div> -->
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="wirelessModal" tabindex="-1" role="dialog" aria-labelledby="wirelessModalLabel" aria-hidden="true">
@@ -548,7 +588,49 @@
                         </div>
                     </div>
                     <div class="row r1 align-items-center margin-top justify-content-center">
-                        <button type="button" class="btn btn-success btn-md btn-block col-6" onclick="sendJsonSm();">Zapisz ustawienia </button>
+                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="sendJsonSm();">Zapisz ustawienia </button>
+                    </div>
+                    <h3 class="margin-top">Ustawienia zaawansowane</h3>
+                    <div class="row r2 align-items-center">
+                        <div class="col-9">
+                            <div class="custom-control">
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="isOtaEnabled">
+                                    <label class="form-check-label" for="isOtaEnabled">isOtaEnabled</label>
+                                </div>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="isAutoResetEnabled">
+                                    <label class="form-check-label" for="isAutoResetEnabled">isAutoResetEnabled</label>
+                                </div>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="rellayNormallyClosed">
+                                    <label class="form-check-label" for="rellayNormallyClosed">rellayNormallyClosed</label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apActiveTime">apActiveTime</label>
+                                    <input type="text" class="form-control" id="apActiveTime">
+                                </div>
+                                <div class="form-group">
+                                    <label for="otaActiveTime">otaActiveTime</label>
+                                    <input type="text" class="form-control" id="otaActiveTime">
+                                </div><div class="form-group">
+                                    <label for="resetTimeHours">resetTimeHours</label>
+                                    <input type="text" class="form-control" id="resetTimeHours">
+                                </div><div class="form-group">
+                                    <label for="resetTimeMinutes">resetTimeMinutes</label>
+                                    <input type="text" class="form-control" id="resetTimeMinutes">
+                                </div><div class="form-group">
+                                    <label for="deepSleepMode">deepSleepMode</label>
+                                    <input type="text" class="form-control" id="deepSleepMode">
+                                </div><div class="form-group">
+                                    <label for="deepSleepInterval">deepSleepInterval</label>
+                                    <input type="text" class="form-control" id="deepSleepInterval">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row r1 align-items-center margin-top justify-content-center">
+                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="sendJsonAdvancedSettings();">Zapisz ustawienia </button>
                     </div>
                 </div>
             </div>    
@@ -600,9 +682,13 @@
             optionTypeCheckHarmDay('.stateSun', '.timeSun', 'harmSun');
             typeCheck('.typeOff', '#typeOf', '.settings');
             typeCheck('.harmOn', '#harmOn', '.harmonogram');
-            wanIP();
+            // wanIP();
             boxCheckAlwaysOn();
             alwaysOnCheck();
+            enterEvent('#inputLogin');
+            enterEvent('#inputPassword');
+            // 
+            
         </script>
     </body>
 </html>
