@@ -44,14 +44,14 @@
         <section class="login w3-animate-left">
             <div class="container col-xl-2 col-lg-4 col-md-6 col-sm-8 login">
                 <div>
-                    <img class="mb-4 centerImg" src="http://prouve.com/img/logo.png" alt="" width="210" height="">
+                    <img class="mb-4 centerImg d-block" src="http://prouve.com/img/logo.png" alt="" width="210" height="">
                     <h1 class="h6 mb-3 font-weight-normal centerText">Logowanie @ LightAutomation</h1>
                     <input id="inputLogin" class="form-control login centerText" placeholder="login" required autofocus onclick="SelectAll('inputLogin');">
                     <input id="inputPassword" class="form-control login centerText" placeholder="password" type="password" required onclick="SelectAll('inputPassword');">
                     <button id="login" class="btn btn-md btn-primary btn-block login" type="submit" onclick="checkCred();">Zaloguj</button>
                     <div class="fixed-bottom">
-                        <a href="http://seleco.pl"><img class="mb-12 centerImg" src="http://seleco.pl/serwis/img/Box_logo.png" alt="" width="60" height=""></a>
-                        <p class="mt-5 mb-3 text-muted centerText bottomPage">&copy; 2020 - SELECO.pl</p>
+                        <a href="http://seleco.pl"><img class="mb-12 centerImg d-block" src="http://seleco.pl/serwis/img/Box_logo.png" alt="" width="60" height=""></a>
+                        <p class="mt-5 mb-3 text-muted centerText bottomPage d-block lowMarginTop">&copy; 2020 - SELECO.pl</p>
                     </div>
                 </div>
                 <div id="messageBox" class="alert info centerText d-none" role="alert">Nieprawidłowe dane logowania!</div>
@@ -593,6 +593,7 @@
                     <h3 class="margin-top">Ustawienia zaawansowane</h3>
                     <div class="row r2 align-items-center">
                         <div class="col-9">
+                            <form>
                             <div class="custom-control">
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="form-check-input" id="isOtaEnabled">
@@ -608,30 +609,32 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="apActiveTime">apActiveTime</label>
-                                    <input type="text" class="form-control" id="apActiveTime">
+                                    <input type="text" class="form-control" id="apActiveTime" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="otaActiveTime">otaActiveTime</label>
-                                    <input type="text" class="form-control" id="otaActiveTime">
+                                    <input type="text" class="form-control" id="otaActiveTime" required>
                                 </div><div class="form-group">
                                     <label for="resetTimeHours">resetTimeHours</label>
-                                    <input type="text" class="form-control" id="resetTimeHours">
+                                    <input type="text" class="form-control" id="resetTimeHours" required>
                                 </div><div class="form-group">
                                     <label for="resetTimeMinutes">resetTimeMinutes</label>
-                                    <input type="text" class="form-control" id="resetTimeMinutes">
+                                    <input type="text" class="form-control" id="resetTimeMinutes" required>
                                 </div><div class="form-group">
                                     <label for="deepSleepMode">deepSleepMode</label>
-                                    <input type="text" class="form-control" id="deepSleepMode">
+                                    <input type="text" class="form-control" id="deepSleepMode" required>
                                 </div><div class="form-group">
                                     <label for="deepSleepInterval">deepSleepInterval</label>
-                                    <input type="text" class="form-control" id="deepSleepInterval">
+                                    <input type="text" class="form-control" id="deepSleepInterval" required>
                                 </div>
+                                <div id="advancedMessage" class="alert alert-danger centerText d-none" role="alert">Nieprawidłowe parametry ustawień</div>
                             </div>
                         </div>
                     </div>
                     <div class="row r1 align-items-center margin-top justify-content-center">
-                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="sendJsonAdvancedSettings();">Zapisz ustawienia </button>
+                        <button type="button" class="btn btn-success btn-md btn-block col-4" onclick="empty();">Zapisz ustawienia </button>
                     </div>
+                    </form>
                 </div>
             </div>    
         <!-- </div> -->

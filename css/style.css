@@ -121,3 +121,12 @@ padding: .1rem .1rem;
 .add_button {
     margin-right: 15px;
 }    
+
+.centerImg {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lowMarginTop {
+    margin-top: 1rem!important;
+}

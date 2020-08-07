@@ -1067,3 +1067,56 @@ function sendJsonAdvancedSettings(){
 
   console.log(JSON.stringify(acfg));
 } 
+
+// function empty() {}
+  
+let fields = ["#apActiveTime","#otaActiveTime","#resetTimeHours","#resetTimeMinutes","#deepSleepMode","#deepSleepInterval"];
+
+function empty(){
+  for ( let i=0; i<fields.length;i++){
+    if (document.querySelector(fields[i]).value === "") {
+      document.querySelector(fields[i]).style = "border-color: red;"
+      document.querySelector("#advancedMessage").classList.remove('d-none');
+      document.querySelector("#advancedMessage").innerHTML = ("Nieprawidłowe dane w polu " + fields[i])
+
+      return false;
+    };
+  }
+  document.querySelector("#apActiveTime").style = "border-color: green;"
+  document.querySelector("#otaActiveTime").style = "border-color: green;"
+  document.querySelector("#resetTimeHours").style = "border-color: green;"
+  document.querySelector("#resetTimeMinutes").style = "border-color: green;"
+  document.querySelector("#deepSleepMode").style = "border-color: green;"
+  document.querySelector("#deepSleepInterval").style = "border-color: green;"
+  document.querySelector("#advancedMessage").classList.add('d-none');
+  document.querySelector("#advancedMessage").innerHTML = ("");
+  sendJsonAdvancedSettings();
+  return true;
+}
+
+  // // 
+  // if (document.querySelector("#otaActiveTime").value == "") {
+  //   alert("Enter a Valid Roll Number");
+  //   return false;
+  // };
+  // // 
+  // if (document.querySelector("#resetTimeHours").value == "") {
+  //   alert("Enter a Valid Roll Number");
+  //   return false;
+  // };
+  // // 
+  // if (document.querySelector("#resetTimeMinutes").value == "") {
+  //   alert("Enter a Valid Roll Number");
+  //   return false;
+  // };
+  // // 
+  // if (document.querySelector("#deepSleepMode").value == "") {
+  //   alert("Enter a Valid Roll Number");
+  //   return false;
+  // };
+  // // 
+  // if (document.querySelector("#deepSleepInterval").value == "") {
+  //   alert("Enter a Valid Roll Number");
+  //   return false;
+  // };
+
